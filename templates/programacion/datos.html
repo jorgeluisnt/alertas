@@ -7,20 +7,16 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <label>Inicio Alertas:</label><br/>
-                <input type="text" name="fecha_inicia_alerta" id="fecha_inicia_alerta" class="text ui-widget-content ui-corner-all" style="width: 150px" readonly="readonly"/>
-            </td>
-            <td>
+            <td colspan="2">
                 <label>Plantilla mensaje:</label><br/>
-                <select name="id_plantilla_mensajes" id="id_plantilla_mensajes" class="full"  title="Seleccione una plantilla para mensajes" style="width: 150px">
+                <select name="id_plantilla_mensajes" id="id_plantilla_mensajes" class="full"  title="Seleccione una plantilla para mensajes" style="width: 400px">
                     {foreach from=$plantilla_mensajes item="m"}
                         <option value="{$m->id_plantilla_mensajes}" >{$m->descripcion}</option>
                     {/foreach}
                 </select>
             </td>           
         </tr>
-        <tr>
+        <!--<tr>
             <td>
                 <label>Dias entre mensaje:</label><br/>
                 <input type="text" name="num_dias_entre_mensaje" id="num_dias_entre_mensaje" class="text ui-widget-content ui-corner-all" style="width: 150px" onkeypress="return validarNumeros(event);"/>
@@ -42,7 +38,7 @@
                 <label>Numero de periodo</label><br/>
                 <input type="text" name="num_unidades_periodo" id="num_unidades_periodo" class="text ui-widget-content ui-corner-all" style="width: 150px" onkeypress="return validarNumeros(event);"/>
             </td>        
-        </tr>
+        </tr>-->
     </table>
 
     <input type="hidden" name="id_programacion" id="id_programacion" value ="-1"/>

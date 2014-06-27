@@ -40,10 +40,10 @@ class cProgramacion extends ControllerBase{
 
         $grilla->addColumnas("p.descripcion", "Descripcion",250);
         $grilla->addColumnas("p.fecha_inicia_alerta", "Fecha Incio");
-        $grilla->addColumnas("p.num_dias_entre_mensaje", "Num. Dias Entre Mensaje");
-        $grilla->addColumnas("p.num_max_mensajes", "Num. Maximo Mensajes");
-        $grilla->addColumnas("p.tipo_periodo", "Tipo Periodo");
-        $grilla->addColumnas("p.num_unidades_periodo", "Unidades Periodo");
+//        $grilla->addColumnas("p.num_dias_entre_mensaje", "Num. Dias Entre Mensaje");
+//        $grilla->addColumnas("p.num_max_mensajes", "Num. Maximo Mensajes");
+//        $grilla->addColumnas("p.tipo_periodo", "Tipo Periodo");
+//        $grilla->addColumnas("p.num_unidades_periodo", "Unidades Periodo");
         $grilla->addColumnas("pm.descripcion", "Plantilla");
         $grilla->addColumnas("siguiente_ejecucion", "Siguiente Ejecucion", 150, 'false', 'false');
 
@@ -75,8 +75,8 @@ class cProgramacion extends ControllerBase{
             inner join alertas.plantilla_mensajes pm on p.id_plantilla_mensajes = pm.id_plantilla_mensajes ');
         
         $db->setSelect(" 
-            p.id_programacion,p.descripcion,to_char(p.fecha_inicia_alerta,'dd/MM/yyyy') as fecha_inicia_alerta,p.num_dias_entre_mensaje,p.num_max_mensajes,
-            p.tipo_periodo,p.num_unidades_periodo,pm.descripcion as plantilla,
+            p.id_programacion,p.descripcion,to_char(p.fecha_inicia_alerta,'dd/MM/yyyy') as fecha_inicia_alerta,
+            pm.descripcion as plantilla,
 
             to_char(case when 
             coalesce((select aa.fecha_inicio from alertas.alertas aa 
@@ -113,7 +113,11 @@ class cProgramacion extends ControllerBase{
             $obj->update();
         }catch(ORMException $e){
             $obj->fecha_registro = date('Y-m-d');
-            $obj->fecha_inicia_alerta = $obj->getFecha($obj->fecha_inicia_alerta);
+            if($obj->fecha_inicia_alerta == ''){
+                $obj->fecha_inicia_alerta = null;
+            }else{
+                $obj->fecha_inicia_alerta = $obj->getFecha($obj->fecha_inicia_alerta);
+            }
             $obj->create(true);
         }
             
@@ -137,7 +141,14 @@ class cProgramacion extends ControllerBase{
         return Cargos_Asignados::getCargos($_REQUEST['id_programacion']);
     }
     
-    public function anularAjax(){
+    public function quitarCargosAjax(){
+        include_once 'models/cargos_asignados.php';
+        $cargo = new Cargos_Asignados($_REQUEST);
+        $cargo->delete();
+        return $cargo->getFields();
+    }
+
+        public function anularAjax(){
 
         $obj = new Programacion();
         try{
