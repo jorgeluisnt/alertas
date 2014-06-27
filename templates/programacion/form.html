@@ -44,6 +44,7 @@
                     <td><label>Oficina</label></td>
                     <td colspan="2">
                         <select name="id_oficina" id="id_oficina" style="width: 300px;" title="Seleccione una oficina" onchange="cargarCargos();">
+                            <option value="0" >.: SELECCIONE :.</option>
                             {foreach from=$oficina item="p"}
                                 <option value="{$p['id_oficina']}" >{$p['nombre']|replace:"=":"&nbsp;"}</option>
                             {/foreach}
@@ -64,22 +65,28 @@
             
         </fieldset>
     
-        <table id="detalle" class="box-table-a">
-            <thead>
-                <tr>
-                    <th style="width: 150px;">
-                        Oficina
-                    </th>
-                    <th style="width: 150px;">
-                        Cargo
-                    </th>
-                    <th style="width: 80px;">
-                        
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
+        <div style="border: solid 1px #CCC; margin-top: 10px">
+            <table class="detalle_header" style="margin-right:16px; border-spacing:0; margin-top:0; width:100%;">
+                <thead>
+                    <tr>
+                        <th width="45%">Oficina</th>
+                        <th width="45%">Cargo</th>
+                        <th width="10%"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div style="overflow-y: scroll; overflow-x: hidden; height: 180px; border: solid 1px #CCC;">
+            <table class="table-details detalle_body" style="border: 0; width: 100%;" id="detalle">
+                <thead>
+                    <tr>
+                        <th width="45%"></th>
+                        <th width="45%"></th>
+                        <th width="10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 </div>

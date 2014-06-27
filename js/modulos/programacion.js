@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    
+
     limpiaForm($('#frm_programacion'), false);
 
-    $( "#fecha_inicia_alerta" ).datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    dateFormat: 'dd/mm/yy'
-            });
+    $("#fecha_inicia_alerta").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
 
     $("#frm_programacion").validate({
         rules: {
@@ -31,7 +31,7 @@ $(document).ready(function() {
         },
         submitHandler: function() {
 
-            if ($("#num_dias_entre_mensaje").val() <= 0){
+            if ($("#num_dias_entre_mensaje").val() <= 0) {
                 Mensaje('Dias entre mensaje solo puede ser mayor que 1');
                 return;
             }
@@ -50,7 +50,7 @@ $(document).ready(function() {
                         id_programacion: $("#id_programacion").val()
                     }, //parametros
             function(response) { //funcion para procesar los datos
-                
+
                 if (response.code && response.code == 'ERROR') {
                     Mensaje(response.message);
                 } else {
@@ -103,15 +103,15 @@ $(document).ready(function() {
                     function(response) {
                         limpiaForm($('#frm_programacion'), true);
 
-                            $("#descripcion").val(response.response.descripcion);
-                            $("#fecha_inicia_alerta").val(response.response.fecha_inicia_alerta);
-                            $("#id_plantilla_mensajes").val(response.response.id_plantilla_mensajes);
-                            $("#num_dias_entre_mensaje").val(response.response.num_dias_entre_mensaje);
-                            $("#num_max_mensajes").val(response.response.num_max_mensajes);
-                            $("#tipo_periodo").val(response.response.tipo_periodo);
-                            $("#num_unidades_periodo").val(response.response.num_unidades_periodo);
-                            $("#id_programacion").val(response.response.id_programacion);
-                            $('#dlgProgramacion').dialog('open');
+                        $("#descripcion").val(response.response.descripcion);
+                        $("#fecha_inicia_alerta").val(response.response.fecha_inicia_alerta);
+                        $("#id_plantilla_mensajes").val(response.response.id_plantilla_mensajes);
+                        $("#num_dias_entre_mensaje").val(response.response.num_dias_entre_mensaje);
+                        $("#num_max_mensajes").val(response.response.num_max_mensajes);
+                        $("#tipo_periodo").val(response.response.tipo_periodo);
+                        $("#num_unidades_periodo").val(response.response.num_unidades_periodo);
+                        $("#id_programacion").val(response.response.id_programacion);
+                        $('#dlgProgramacion').dialog('open');
 
                     },
                             'json'
@@ -169,7 +169,7 @@ $(document).ready(function() {
             limpiaForm($('#oform'), false);
         }
     });
-    
+
     cargarCargos = function(idcargo) {
 
         $('#id_cargo option').remove();
@@ -199,36 +199,36 @@ $(document).ready(function() {
                 );
 
     };
-    
+
     $("#agregar").button({
         icons: {
             primary: "ui-icon-document"
         },
         text: true
     }).bind('click', function(e) {
-        
-        if($('#id_cargo').val() == null){
+
+        if ($('#id_cargo').val() == null) {
             Mensaje('Seleccione un cargo');
-            return;            
+            return;
         }
-        
+
         var id_cargo = $('#id_cargo').val();
-        
+
         var existe = false;
-        $('#detalle tbody tr').each(function(idx,obj){
+        $('#detalle tbody tr').each(function(idx, obj) {
             var id = $(this).find('.id_cargos_asignados').val();
-            if (id == id_cargo){
+            if (id == id_cargo) {
                 existe = true;
             }
         });
 
-        if (existe == true){
+        if (existe == true) {
             Mensaje('El cargo ya esta agregado');
             return;
         }
-        
+
         var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
-        
+
         $.post(
                 URLINDEX + '/programacion/agregarCargos',
                 {
@@ -239,11 +239,11 @@ $(document).ready(function() {
 
         function(r) { //funcion para procesar los datos
 
-                
+            
 
-            },
-            'json'//tipo de dato devuelto
-        );
+        },
+                'json'//tipo de dato devuelto
+                );
 
     });
 

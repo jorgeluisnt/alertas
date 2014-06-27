@@ -334,3 +334,34 @@ html, body {
               }     
               
 .cabeceraModal{font-weight:bold;font-size:12px !important;text-transform:uppercase;height: 20px;vertical-align: bottom;text-spacing: 1px;text-shadow:#cccccc 1px 1px;}
+
+.table-details thead {
+    border: solid 1px #ccc;
+}
+
+.table-details tbody {
+    border: solid 1px #ccc;
+}
+.detalle_header {
+    margin-top: 10px;
+    /*border: solid 1px #CCC;*/
+    /*width: 665px;*/
+}
+.detalle_header th{
+    background-color:#e5e5e5;
+}
+.detalle_body {
+    /*border: solid 1px #CCC;*/
+}
+.detalle_body tbody tr:hover {
+    /*background-color: #ECECEC;*/
+    /*background-color: #f3f3f3;*/
+    background-color: #F1F1F1;
+    /*width: 680px;*/
+}
+.detalle_body tbody tr:hover input {
+    /*background-color: #ECECEC;*/
+    /*background-color: #f3f3f3;*/
+    background-color: #F1F1F1;
+    /*width: 680px;*/
+}
