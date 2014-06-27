@@ -1096,7 +1096,7 @@ A : Area</remarks>
  <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="alertas"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="0.8408964152537145" viewportX="0" viewportY="53" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="0.8408964152537145" viewportX="0" viewportY="94" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB147" x="60" y="43" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB156" x="606" y="242" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB164" x="294" y="47" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
@@ -1112,7 +1112,7 @@ A : Area</remarks>
   <table-pane table-ref="TAB261" x="774" y="20" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB269" x="864" y="153" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB276" x="914" y="531" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB284" x="937" y="695" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB284" x="870" y="744" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-link relationship-ref="REL292" pkConnection="0.4666666666666667" fkConnection="0.5333333333333333" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
   <table-link relationship-ref="REL294" pkConnection="0.6424242424242425" fkConnection="0.8142076502732241" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
   <table-link relationship-ref="REL304" pkConnection="0.5393939393939394" fkConnection="0.4380952380952381" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
