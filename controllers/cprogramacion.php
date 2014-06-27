@@ -56,7 +56,14 @@ class cProgramacion extends ControllerBase{
         include_once 'models/oficina.php';
         $oficina = Oficina::getOficinasDependencia(0, 0);
         
+        $date = array();
+        
+        for ($index = date('Y'); $index < date('Y') + 5; $index++) {
+            $date[] = $index;
+        }
+        
         $smarty->assign('oficina', $oficina);
+        $smarty->assign('date', $date);
         $smarty->assign('plantilla_mensajes', $plantilla_mensajes);
         $smarty->assign('links', 'links.html');
         $smarty->assign('grilla', $grilla->buildJsGrid());
@@ -191,6 +198,40 @@ class cProgramacion extends ControllerBase{
         }catch(ORMException $e){
             return null;
         }
+
+    }
+    
+    public function getPeriodoAjax(){
+
+        include_once 'models/periodo_programacion.php';
+        $pp = new Periodo_Programacion();
+        $pp = $pp->getAll()->WhereAnd('id_programacion=', $_REQUEST['id_programacion'])->WhereAnd('estado=', 'A')
+                ->Orderby('anio', true)->Orderby('mes', true);
+        
+        return $pp->getArrayAll();
+
+    }
+    
+    public function guardarPeriodoAjax(){
+        include_once 'models/periodo_programacion.php';
+        
+        $objLs = new Periodo_Programacion();
+        $objLs = $objLs->getAll()->WhereAnd('id_programacion=', $_REQUEST['id_programacion'])
+                ->WhereAnd('mes=', $_REQUEST['mes'])
+                ->WhereAnd('anio=', $_REQUEST['anio'])
+                ->WhereAnd('estado=', 'A');
+        
+        if ($objLs->count() > 0){
+            throw new Exception("El periodo ya esta registrado");
+        }
+        
+        $obj = new Periodo_Programacion();
+        $obj->estado = 'A';
+        $obj->mes = $_REQUEST['mes'];
+        $obj->anio = $_REQUEST['anio'];
+        $obj->id_programacion = $_REQUEST['id_programacion'];
+        $obj->create();
+        return $obj->getFields();
 
     }
 }

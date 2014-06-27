@@ -328,4 +328,117 @@ $(document).ready(function() {
                  );
        }
      });
+     
+     //////////////////////////////////////////////
+     
+    $('#dlgDetalle').dialog({
+        autoOpen: false,
+        width: 700,
+        position: 'top',
+        modal: true,
+        buttons: {
+            Cerrar: function() {
+                $(this).dialog("close");
+            }
+        },
+        close: function() {
+            limpiaForm($('#oform'), false);
+        }
+    });
+    
+    $('#dlgAddPeriodo').dialog({
+        autoOpen: false,
+        width: 200,
+        position: 'top',
+        modal: true,
+        buttons: {
+            Guardar: function() {
+                var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
+                var mes = $('#mes').val();
+                var anio = $('#anio').val();
+                
+                $.post(
+                    URLINDEX + '/programacion/guardarPeriodo',
+                    {
+                        ajax: 'ajax',
+                        id_programacion: indexR,
+                        mes : mes,
+                        anio : anio
+                    }, //parametros
+                    function(response) { //funcion para procesar los datos
+                        if (response.code && response.code == 'ERROR') {
+                            Mensaje(response.message);
+                        } else {
+                            cargarPeriodo(indexR);
+                            $('#dlgAddPeriodo').dialog('close');
+                        }
+                    },
+                    'json'//tipo de dato devuelto
+                );
+            },
+            Cerrar: function() {
+                $(this).dialog("close");
+            }
+        },
+        close: function() {
+            limpiaForm($('#oform'), false);
+        }
+    });
+    
+    $(".addPeriodo").click(function(){
+        $('#dlgAddPeriodo').dialog('open');
+    });
+    
+    $("#fechas_alertas").button()
+    .click(function() {
+
+        var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
+        if (indexR != null) {
+            
+            var datos = jQuery('#lsprogramacion').getRowData(indexR);
+            $('#nProgramacion').val(datos['p.descripcion']);
+            
+            cargarPeriodo(indexR);
+
+            $('#dlgDetalle').dialog('open');
+        } else
+            Mensaje('Seleccione un valor de la grilla', 'Seleccione');
+    });
+     
 });
+
+function cargarPeriodo(id_programacion){
+    $.post(
+        URLINDEX + '/programacion/getPeriodo',
+        {
+            ajax: 'ajax',
+            id_programacion: id_programacion
+        }, //parametros
+        function(response) { //funcion para procesar los datos
+            if (response.code && response.code == 'ERROR') {
+                Mensaje(response.message);
+            } else {
+                
+                $('#lsPeriodos tbody tr').remove();
+                
+                $.each(response.response,function(idx,obj){
+                    var tr =   '<tr>' +
+                                    '<th width="5%"><input type="radio" name="rbPeriodo" value="" id="rb_' + obj.id_periodo_programacion + '" id_periodo_programacion="' + obj.id_periodo_programacion + '" class="selPeriodo"/></th>' +
+                                    '<th width="90%" style="text-align: left;"><label for="rb_' + obj.id_periodo_programacion + '">' + mes(obj.mes) + ' - ' + obj.anio + '</label></th>' +
+                                    '<th width="5%"><a href="#" title="Quitar Periodo" class="qPeriodo"><img src="' + URLHOST + 'images/delete_otro.png"/></a></th>'
+                                '</tr>'; 
+                    
+                    $('#lsPeriodos tbody').append(tr);
+                    
+                });
+                
+            }
+        },
+        'json'//tipo de dato devuelto
+    );
+}
+
+function mes(mes){
+    var nMes = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
+    return nMes[mes-1];
+}

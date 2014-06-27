@@ -23,6 +23,7 @@
             <button id="anular_programacion">Anular</button>
             
             <button id="asignar_cargos">Asignar Cargos</button>
+            <button id="fechas_alertas">Fechas Alertas</button>
         </fieldset>
 
 </div>
@@ -90,4 +91,108 @@
                 </tbody>
             </table>
         </div>
+</div>
+
+<div id="dlgDetalle" title="Detalle de programacion">
+    <table style="width: 100%;">
+        <tr>
+            <td colspan="2">
+                <label>Programacion:</label>
+                <input type="text" name="nProgramacion" id="nProgramacion" value="" readonly="readonly" style="width: 500px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%">
+                <div style="border: solid 1px #CCC; margin-top: 10px">
+                    <table class="detalle_header" style="margin-right:16px; border-spacing:0; margin-top:0; width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="5%"></th>
+                                <th width="95%">Periodos</th>
+                                <th width="5%"><a href="#" title="Agregar Periodo" class="addPeriodo"><img src="{$HOST}images/add.png"/></a></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div style="overflow-y: scroll; overflow-x: hidden; height: 180px; border: solid 1px #CCC;">
+                    <table class="table-details detalle_body" style="border: 0; width: 100%;" id="lsPeriodos">
+                        <thead>
+                            <tr>
+                                <th width="5%"></th>
+                                <th width="90%"></th>
+                                <th width="5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td style="width: 50%">
+                <div style="border: solid 1px #CCC; margin-top: 10px">
+                    <table class="detalle_header" style="margin-right:16px; border-spacing:0; margin-top:0; width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="5%"></th>
+                                <th width="45%">Fecha Alerta</th>
+                                <th width="45%">Fecha Final</th>
+                                <th width="5%"><a href="#" title="Agregar Fechas" class="addFechas"><img src="{$HOST}images/add.png"/></a></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div style="overflow-y: scroll; overflow-x: hidden; height: 180px; border: solid 1px #CCC;">
+                    <table class="table-details detalle_body" style="border: 0; width: 100%;" id="lsFechas">
+                        <thead>
+                            <tr>
+                                <th width="5%"></th>
+                                <th width="45%"></th>
+                                <th width="45%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="dlgAddPeriodo" title="Agregar Periodo">
+    <table>
+        <tr>
+            <td>
+                <label>Mes:</label>
+            </td>
+            <td>
+                <select name="mes" id="mes" style="width: 100px;">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Año:</label>
+            </td>
+            <td>
+                <select name="anio" id="anio" style="width: 100px;">
+                    {foreach from=$date item="p"}
+                        <option value="{$p}" >{$p}</option>
+                    {/foreach}
+                </select>
+            </td>
+        </tr>
+    </table>
 </div>
