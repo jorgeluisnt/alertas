@@ -1,0 +1,85 @@
+
+{include file=$links}
+
+<script type="text/javascript" src="{$HOST}js/modulos/programacion.js"></script>
+
+<script type="text/javascript">
+
+    {$grilla}
+
+</script>
+
+
+<div style="width: 97%">
+
+        <table id="lsprogramacion"></table>
+        <div id="pgprogramacion"></div>
+
+
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Operaciones</legend>
+
+            <button id="nuevo_programacion">Nuevo</button>
+            <button id="modificar_programacion">Modificar</button>
+            <button id="anular_programacion">Anular</button>
+        </fieldset>
+
+</div>
+
+
+
+<div id="dlgProgramacion" title="Programacion de alertas" >
+
+    {include file=$datos}
+
+</div>
+
+<div id="dlgCargos" title="Asignacion de cargos">
+    
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Datos</legend>
+
+            <table>
+                <tr>
+                    <td><label>Oficina</label></td>
+                    <td colspan="2">
+                        <select name="id_oficina" id="id_oficina" style="width: 300px;" title="Seleccione una oficina" onchange="cargarCargos();">
+                            {foreach from=$oficina item="p"}
+                                <option value="{$p['id_oficina']}" >{$p['nombre']|replace:"=":"&nbsp;"}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Cargo</label></td>
+                    <td>
+                        <select name="id_cargo" id="id_cargo" style="width: 200px;" title="Seleccione un cargo">
+                        </select>
+                    </td>
+                    <td>
+                        <button id="agregar">Agregar</button>
+                    </td>
+                </tr>
+            </table>
+            
+        </fieldset>
+    
+        <table id="detalle" class="box-table-a">
+            <thead>
+                <tr>
+                    <th style="width: 150px;">
+                        Oficina
+                    </th>
+                    <th style="width: 150px;">
+                        Cargo
+                    </th>
+                    <th style="width: 80px;">
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+</div>

@@ -1,0 +1,52 @@
+
+ {include file=$links}
+
+<script type="text/javascript" src="{$HOST}js/modulos/municipalidad.js"></script>
+
+<script type="text/javascript">
+
+{$grilla}
+
+</script>
+
+
+<div style="width: 100%">
+    
+    <div style="width: 451px;float: left">
+        
+        <table id="lsmunicipalidad"></table>
+        <div id="pgmunicipalidad"></div>
+        
+        
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Operaciones</legend>
+            
+            <button id="nuevo_municipalidad">Nuevo</button>
+            <button id="modificar_municipalidad">Modificar</button>
+            <button id="anular_municipalidad">Anular</button>
+        </fieldset>
+        
+    </div>
+    
+    <div style="width: 400px;float: left;" >
+        
+    <fieldset class="ui-widget ui-widget-content"> 
+      <legend class="ui-widget-header ui-corner-all">Datos</legend>
+        
+        {include file=$datos}
+      
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Confirmar</legend>
+
+            <button id="guardar_municipalidad">Guardar</button>
+            <button id="cancelar_municipalidad">Cancelar</button>
+        </fieldset>
+        
+    </fieldset>
+    
+    </div>
+    
+</div>
+
+
+

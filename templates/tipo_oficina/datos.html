@@ -1,0 +1,14 @@
+<form action="/index.php/tipo_oficina/guardar" title="Administra Municipalidades" method="post" id="frm_tipo_oficina" class="formulario ">
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <label class="required" for="descripcion">Descripcion</label>
+                        <br/>
+                        <input type="text" name="descripcion" id="descripcion" class="text ui-widget-content ui-corner-all" style="width: 100%" onkeypress="return validarLetras(event);"/>                        
+                        </br>
+                    </td>
+                </tr>
+            </table>
+            
+            <input type="hidden" name="id_tipo_oficina" id="id_tipo_oficina" value ="-1"/>
+</form>

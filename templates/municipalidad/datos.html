@@ -1,0 +1,41 @@
+<form action="/index.php/municipalidad/guardar" title="Administra Municipalidades" method="post" id="frm_municipalidad" class="formulario ">
+
+            <table style="width: 100%">
+                <tr>
+                    <td colspan="2">
+                        <label class="required" for="razon_social">Razon Social</label>
+                        <br/>
+                        <input type="text" name="razon_social" id="razon_social" class="text ui-widget-content ui-corner-all" style="width: 100%"/>                        
+                        </br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="required" for="direccion">Direccion</label>
+                        <br/>
+                        <input type="text" name="direccion" id="direccion" class="text ui-widget-content ui-corner-all" style="width: 100%"/>                        
+                        </br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="required" for="ruc">RUC</label>
+                        <br/>
+                        <input type="text" name="ruc" id="ruc" class="text ui-widget-content ui-corner-all" style="width: 100%" onkeypress="return validarNumeros(event);" maxlength="11"/>                        
+                        </br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="telefonos">Telefonos</label>
+                        <br/>
+                        <input type="text" name="telefonos" id="telefonos" class="text ui-widget-content ui-corner-all" style="width: 100%" onkeypress="return validarNumeros(event);"/>                        
+                        </br>
+                    </td>
+                </tr>
+            </table>
+            
+            <input type="hidden" name="id_municipalidad" id="id_municipalidad" value ="-1"/>
+            
+            <span id="load"></span>
+</form>

@@ -1,0 +1,52 @@
+
+ {include file=$links}
+
+<script type="text/javascript" src="{$HOST}js/modulos/tipo_oficina.js"></script>
+
+<script type="text/javascript">
+
+{$grilla}
+
+</script>
+
+
+<div style="width: 100%">
+    
+    <div style="width: 451px;float: left">
+        
+        <table id="lstipo_oficina"></table>
+        <div id="pgtipo_oficina"></div>
+        
+        
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Operaciones</legend>
+            
+            <button id="nuevo_tipo_oficina">Nuevo</button>
+            <button id="modificar_tipo_oficina">Modificar</button>
+            <button id="anular_tipo_oficina">Anular</button>
+        </fieldset>
+        
+    </div>
+    
+    <div style="width: 400px;float: left;" >
+        
+    <fieldset class="ui-widget ui-widget-content"> 
+      <legend class="ui-widget-header ui-corner-all">Datos</legend>
+        
+        {include file=$datos}
+      
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Confirmar</legend>
+
+            <button id="guardar_tipo_oficina">Guardar</button>
+            <button id="cancelar_tipo_oficina">Cancelar</button>
+        </fieldset>
+        
+    </fieldset>
+    
+    </div>
+    
+</div>
+
+
+

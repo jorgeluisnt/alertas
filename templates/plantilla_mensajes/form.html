@@ -1,0 +1,52 @@
+
+ {include file=$links}
+
+<script type="text/javascript" src="{$HOST}js/modulos/plantilla_mensajes.js"></script>
+
+<script type="text/javascript">
+
+{$grilla}
+
+</script>
+
+
+<div style="width: 100%">
+    
+    <div style="width: 451px;float: left">
+        
+        <table id="lsplantilla_mensajes"></table>
+        <div id="pgplantilla_mensajes"></div>
+        
+        
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Operaciones</legend>
+            
+            <button id="nuevo_plantilla_mensajes">Nuevo</button>
+            <button id="modificar_plantilla_mensajes">Modificar</button>
+            <button id="anular_plantilla_mensajes">Anular</button>
+        </fieldset>
+        
+    </div>
+    
+    <div style="width: 400px;float: left;" >
+        
+    <fieldset class="ui-widget ui-widget-content"> 
+      <legend class="ui-widget-header ui-corner-all">Datos</legend>
+        
+        {include file=$datos}
+      
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Confirmar</legend>
+
+            <button id="guardar_plantilla_mensajes">Guardar</button>
+            <button id="cancelar_plantilla_mensajes">Cancelar</button>
+        </fieldset>
+        
+    </fieldset>
+    
+    </div>
+    
+</div>
+
+
+

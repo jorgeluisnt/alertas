@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <title>Sistema de control de alertas</title>
+
+        <link rel="stylesheet" href="{$HOST}css/reset.css" />
+        <link rel="stylesheet" href="{$HOST}css/text.css" />
+        <link rel="stylesheet" href="{$HOST}css/960_fluid.css" />
+        <link rel="stylesheet" href="{$HOST}css/main.css" />
+        <link rel="stylesheet" href="{$HOST}css/style.css" />
+        <link rel="stylesheet" href="{$HOST}css/bar_nav.css" />
+        <link rel="stylesheet" href="{$HOST}css/side_nav.css" />
+        <link rel="stylesheet" href="{$HOST}css/theme/jquery-ui.custom.css" />
+
+        <script type="text/javascript" src="{$HOST}js/config.js"></script>
+        <script type="text/javascript" src="{$HOST}js/jquery.min.js"></script>
+        <script type="text/javascript" src="{$HOST}js/jquery-ui.min.js"></script>
+
+        <script type="text/javascript" src="{$HOST}js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="{$HOST}js/jquery.hoverIntent.minified.js"></script>
+
+        <script type="text/javascript" src="{$HOST}js/sherpa_ui.js"></script>
+        <script type="text/javascript" src="{$HOST}js/util.js"></script>
+
+        <style type="text/css">
+            .mensaje {  
+                font-size: 11px;
+                border-bottom: 1px solid #DDD;
+                border-top: 1px solid white;
+                cursor: pointer;
+            }
+            .mensaje:hover {  
+                background-color: #E3E8F0;
+            }
+            .codigo {  
+                float: left;
+                color: #000099;
+                font-weight: bold;
+                padding: 5px 5px 2px 5px;
+            }
+            .fecha { 
+                float: right;
+                color: #cc0000;
+                font-weight: bold;
+                padding: 5px 5px 2px 5px;
+            }
+            .destino { 
+                padding-left: 5px;
+            }.responsable { 
+                padding-left: 5px;
+                font-style: italic;
+            }
+        </style>
+
+        <script type="text/javascript">
+
+            var maintab;
+
+            jQuery(document).ready(function() {
+
+                maintab = jQuery('#tabs').tabs({
+                    add: function(e, ui) {
+                        // append close thingy
+                        $(ui.tab).parents('li:first').css('font-size', '12px')
+                                .append('<span class="ui-tabs-close ui-icon ui-icon-close" title="Cerra Tab"></span>')
+                                .find('span.ui-tabs-close')
+                                .click(function() {
+                                    maintab.tabs('remove', $('li', maintab).index($(this).parents('li:first')[0]));
+                                });
+                        // select just added tab
+                        maintab.tabs('select', '#' + ui.panel.id);
+
+                    }
+                });
+
+            });
+
+            function abrir(a) {
+
+                var href = $('#' + a + '.btnop').attr('link');
+                var id = $('#' + a + '.btnop').attr('id');
+                var nombre = $('#' + a + '.btnop').text();
+
+                var st = "#t" + id;
+
+                if ($(st).html() != null) {
+                    maintab.tabs('select', st);
+                } else {
+
+                    var h = getWindowData()[1] - 80;
+
+                    maintab.tabs('add', st, nombre);
+
+                    $(st).css("overflow", "hidden").css("height", " 100%").css("position:", "relative");
+                    $(st, "#tabs").append("<iframe frameborder='0' width='99%' height='" + h + "px' id='if_" + id + "' src='" + href + "' ></iframe>");
+
+                }
+
+            }
+            ;
+
+            function ShowNotificacion(id_servicios) {
+
+                $('#loader').css('display', '');
+
+                $.ajax({
+                    url: URLHOST + 'templates/Frame.php',
+                    async: true,
+                    data: {
+                        url: URLINDEX + '/servicios/detalle?id_servicios=' + id_servicios,
+                        height: '400px',
+                        width: '440px'
+                    },
+                    type: 'post',
+                    success: function(data) {
+                        $('#loader').css('display', 'none');
+                        $("#fmas").empty().append(data);
+                        $("#fmas").dialog({
+                            title: 'Detalle Servicio',
+                            modal: true,
+                            position: "top",
+                            height: 460,
+                            width: 480,
+                            show: 'slide'
+                        });
+                    }
+                });
+
+            }
+            ;
+
+            function finalizar() {
+                $("#fmas").dialog('close');
+                $("#fmas").empty();
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div id="wrapper" class="container_16">
+            <div id="top_nav" class="nav_down bar_nav grid_16 round_all">
+                <ul class="round_all clearfix">				
+                    <li><a class="round_left" href="javascript:;">
+                            <img src="{$HOST}images/user.png" >
+                                {$nombre_funcionario}
+                        </a>
+                    </li>
+                    <li><a class="round_left" href="javascript:;">
+                            <img src="{$HOST}images/monitor.png">
+                                {$ip}
+                        </a>
+                    </li>
+                    <li><a class="round_left" href="javascript:;">
+                            <img src="{$HOST}images/clock.png" >
+                                {$smarty.now|date_format:"%d/%m/%Y"}
+                        </a>
+                    </li>
+                    <li class="send_right"><a class="round_right" href="{$HOST}index.php/logout">
+                            <img src="{$HOST}images/delete.png" >
+                                Salir
+                        </a>
+                    </li>
+                    <li class="send_right"><a class="round_right" href="javascript:frmclave();">
+                            <img src="{$HOST}images/clave.png" >
+                                Cambia Clave
+                        </a>
+                    </li>
+                    <li class="send_right" >
+                        <span id="loader" style="display: none;">
+                            <img src="{$HOST}images/ajax-loader.gif" />
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="side_nav" class="side_nav grid_3 push_down">
+                {$opciones}
+                <a href="#" class="minimize round_bottom"><span>minimize</span></a>
+            </div>
+
+            <div id="main" class="grid_13 omega">
+                <div class="content round_all clearfix">
+
+                    <div id="tabs" style="overflow: hidden; position: relative; height: 99%;" class="jqgtabs">
+
+                        <ul>
+                            <li><a href="#tabs-1">Bienvenido</a></li>
+                        </ul>
+
+                        <div id="tabs-1">
+
+                            {include file=$contenido}
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div id="fmas"></div>
+    </body>
+    <style type="text/css">
+        .cell-wrapperleaf{
+            cursor: pointer !important;
+        }
+    </style>
+</html>
