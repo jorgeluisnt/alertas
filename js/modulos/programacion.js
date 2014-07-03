@@ -8,6 +8,18 @@ $(document).ready(function() {
         dateFormat: 'dd/mm/yy'
     });
 
+    $("#f_fecha_mensaje").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+    
+    $("#f_fecha_final").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+    
     $("#frm_programacion").validate({
         rules: {
             descripcion: {required: true},
@@ -169,7 +181,7 @@ $(document).ready(function() {
             limpiaForm($('#oform'), false);
         }
     });
-    
+
     $('#dlgCargos').dialog({
         autoOpen: false,
         width: 550,
@@ -186,40 +198,40 @@ $(document).ready(function() {
     });
 
     $("#asignar_cargos").button()
-    .click(function() {
+            .click(function() {
 
-        var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
-        if (indexR != null) {
-            
-        $.post(
-                URLINDEX + '/programacion/getCargos',
-                {
-                    ajax: 'ajax',
-                    id_programacion: indexR
-                }, //parametros
+                var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
+                if (indexR != null) {
 
-        function(r) { //funcion para procesar los datos
-            
-            $('#detalle tbody tr').remove();
-            
-            $.each(r.response,function(idx,obj){
-                var tr = '<tr>' +
-                            '<td width="45%">' + obj.oficina + '</td>' +
-                            '<td width="45%">' + obj.cargo + '</td>' +
-                            '<td width="10%"><a href="#" class="qCargo" id_cargo="' + obj.id_cargo + '" id_detalle="' + obj.id_cargos_asignados + '" title="Quitar Cargo"><img src="' + URLHOST + 'images/delete_otro.png"/></a></td>' +
-                         '</tr>';
-                $('#detalle tbody').append(tr); 
+                    $.post(
+                            URLINDEX + '/programacion/getCargos',
+                            {
+                                ajax: 'ajax',
+                                id_programacion: indexR
+                            }, //parametros
+
+                    function(r) { //funcion para procesar los datos
+
+                        $('#detalle tbody tr').remove();
+
+                        $.each(r.response, function(idx, obj) {
+                            var tr = '<tr>' +
+                                    '<td width="45%">' + obj.oficina + '</td>' +
+                                    '<td width="45%">' + obj.cargo + '</td>' +
+                                    '<td width="10%"><a href="#" class="qCargo" id_cargo="' + obj.id_cargo + '" id_detalle="' + obj.id_cargos_asignados + '" title="Quitar Cargo"><img src="' + URLHOST + 'images/delete_otro.png"/></a></td>' +
+                                    '</tr>';
+                            $('#detalle tbody').append(tr);
+                        });
+
+                        $('#dlgCargos').dialog('open');
+                    },
+                            'json'//tipo de dato devuelto
+                            );
+
+                } else
+                    Mensaje('Seleccione un valor de la grilla', 'Seleccione');
             });
-            
-            $('#dlgCargos').dialog('open');
-        },
-                'json'//tipo de dato devuelto
-                );
 
-        } else
-            Mensaje('Seleccione un valor de la grilla', 'Seleccione');
-    });
-            
     cargarCargos = function(idcargo) {
 
         $('#id_cargo option').remove();
@@ -293,10 +305,10 @@ $(document).ready(function() {
         function(r) { //funcion para procesar los datos
 
             var tr = '<tr>' +
-                        '<td width="45%">' + $.trim(oficina) + '</td>' +
-                        '<td width="45%">' + cargo + '</td>' +
-                        '<td width="10%"><a href="#" class="qCargo" id_cargo="' + id_cargo + '" id_detalle="' + r.response.id_cargos_asignados + '" title="Quitar Cargo"><img src="' + URLHOST + 'images/delete_otro.png"/></a></td>' +
-                     '</tr>';
+                    '<td width="45%">' + $.trim(oficina) + '</td>' +
+                    '<td width="45%">' + cargo + '</td>' +
+                    '<td width="10%"><a href="#" class="qCargo" id_cargo="' + id_cargo + '" id_detalle="' + r.response.id_cargos_asignados + '" title="Quitar Cargo"><img src="' + URLHOST + 'images/delete_otro.png"/></a></td>' +
+                    '</tr>';
 
             $('#detalle tbody').append(tr);
 
@@ -306,31 +318,84 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click','.qCargo',function(e){
-       e.preventDefault();
-       
-       if (confirm("Desea quitar el cargo")){
-        var id = $(this).attr('id_detalle');
-        var a = $(this);
-         $.post(
-                 URLINDEX + '/programacion/quitarCargos',
-                 {
-                     ajax: 'ajax',
-                     id_cargos_asignados: id
-                 }, //parametros
+    $(document).on('click', '.qCargo', function(e) {
+        e.preventDefault();
 
-         function(r) { //funcion para procesar los datos
+        if (confirm("Desea quitar el cargo")) {
+            var id = $(this).attr('id_detalle');
+            var a = $(this);
+            $.post(
+                    URLINDEX + '/programacion/quitarCargos',
+                    {
+                        ajax: 'ajax',
+                        id_cargos_asignados: id
+                    }, //parametros
 
-             $(a).parent().parent().remove();
+            function(r) { //funcion para procesar los datos
 
-         },
-                 'json'//tipo de dato devuelto
-                 );
-       }
-     });
-     
-     //////////////////////////////////////////////
-     
+                $(a).parent().parent().remove();
+
+            },
+                    'json'//tipo de dato devuelto
+                    );
+        }
+    });
+
+    //////////////////////////////////////////////
+
+    $(document).on('click', '.qPeriodo', function(e) {
+        e.preventDefault();
+
+        if (confirm("Desea quitar el periodo")) {
+
+            var id = $(this).attr('id_periodo_programacion');
+            var a = $(this);
+            $.post(
+                URLINDEX + '/programacion/quitarPeriodo',
+                {
+                    ajax: 'ajax',
+                    id_periodo_programacion: id
+                },
+                function(r) { //funcion para procesar los datos
+                    $(a).parent().parent().remove();
+                },
+                'json'//tipo de dato devuelto
+            );
+    
+        }
+    });
+    
+    $(document).on('click', '.qFecha', function(e) {
+        e.preventDefault();
+
+        if (confirm("Desea quitar la fecha")) {
+
+            var id = $(this).attr('id_detalle_periodo');
+            var a = $(this);
+            $.post(
+                URLINDEX + '/programacion/quitarFecha',
+                {
+                    ajax: 'ajax',
+                    id_detalle_periodo: id
+                },
+                function(r) { //funcion para procesar los datos
+                    $(a).parent().parent().remove();
+                },
+                'json'//tipo de dato devuelto
+            );
+    
+        }
+    });
+
+    $(document).on('change', '.selPeriodo', function(e) {
+        e.preventDefault();
+
+        var id = $(this).attr('id_periodo_programacion');
+        
+        cargarFechas(id);
+
+    });
+
     $('#dlgDetalle').dialog({
         autoOpen: false,
         width: 700,
@@ -345,7 +410,7 @@ $(document).ready(function() {
             limpiaForm($('#oform'), false);
         }
     });
-    
+
     $('#dlgAddPeriodo').dialog({
         autoOpen: false,
         width: 200,
@@ -356,24 +421,71 @@ $(document).ready(function() {
                 var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
                 var mes = $('#mes').val();
                 var anio = $('#anio').val();
+
+                $.post(
+                        URLINDEX + '/programacion/guardarPeriodo',
+                        {
+                            ajax: 'ajax',
+                            id_programacion: indexR,
+                            mes: mes,
+                            anio: anio
+                        }, //parametros
+                function(response) { //funcion para procesar los datos
+                    if (response.code && response.code == 'ERROR') {
+                        Mensaje(response.message);
+                    } else {
+                        cargarPeriodo(indexR);
+                        $('#dlgAddPeriodo').dialog('close');
+                    }
+                },
+                        'json'//tipo de dato devuelto
+                        );
+            },
+            Cerrar: function() {
+                $(this).dialog("close");
+            }
+        },
+        close: function() {
+            limpiaForm($('#oform'), false);
+        }
+    });
+
+    $('#dlgFechas').dialog({
+        autoOpen: false,
+        width: 300,
+        position: 'top',
+        modal: true,
+        buttons: {
+            Guardar: function() {
+                
+                if ($('#f_fecha_mensaje').val() == ''){
+                    Mensaje('Seleccione fecha envio');
+                    return;
+                }
+                if ($('#f_fecha_final').val() == ''){
+                    Mensaje('Seleccione fecha fin tarea');
+                    return;
+                }
+                
+                var id = $('.selPeriodo:checked').attr('id_periodo_programacion');
                 
                 $.post(
-                    URLINDEX + '/programacion/guardarPeriodo',
-                    {
-                        ajax: 'ajax',
-                        id_programacion: indexR,
-                        mes : mes,
-                        anio : anio
-                    }, //parametros
-                    function(response) { //funcion para procesar los datos
-                        if (response.code && response.code == 'ERROR') {
-                            Mensaje(response.message);
-                        } else {
-                            cargarPeriodo(indexR);
-                            $('#dlgAddPeriodo').dialog('close');
-                        }
-                    },
-                    'json'//tipo de dato devuelto
+                        URLINDEX + '/programacion/guardarFecha',
+                        {
+                            ajax: 'ajax',
+                            id_periodo_programacion: id,
+                            fecha_mensaje: $('#f_fecha_mensaje').val(),
+                            fecha_final: $('#f_fecha_final').val()
+                        }, //parametros
+                        function(response) { //funcion para procesar los datos
+                            if (response.code && response.code == 'ERROR') {
+                                Mensaje(response.message);
+                            } else {
+                                cargarFechas(id);
+                                $('#dlgFechas').dialog('close');
+                            }
+                        },
+                        'json'//tipo de dato devuelto
                 );
             },
             Cerrar: function() {
@@ -385,60 +497,100 @@ $(document).ready(function() {
         }
     });
     
-    $(".addPeriodo").click(function(){
+    $(".addPeriodo").click(function() {
         $('#dlgAddPeriodo').dialog('open');
     });
-    
-    $("#fechas_alertas").button()
-    .click(function() {
 
+    $("#fechas_alertas").button().click(function() {
         var indexR = jQuery('#lsprogramacion').getGridParam("selrow");
         if (indexR != null) {
-            
+
             var datos = jQuery('#lsprogramacion').getRowData(indexR);
             $('#nProgramacion').val(datos['p.descripcion']);
-            
+
             cargarPeriodo(indexR);
 
             $('#dlgDetalle').dialog('open');
         } else
             Mensaje('Seleccione un valor de la grilla', 'Seleccione');
     });
-     
+    
+    $(".addFechas").click(function() {
+        
+        if($('.selPeriodo:checked').length > 0){
+            $('#dlgFechas').dialog('open');
+        }else{
+            Mensaje('Seleccione un periodo');
+        }
+        
+    });
+
 });
 
-function cargarPeriodo(id_programacion){
+function cargarFechas(id_periodo_programacion){
     $.post(
-        URLINDEX + '/programacion/getPeriodo',
-        {
-            ajax: 'ajax',
-            id_programacion: id_programacion
-        }, //parametros
-        function(response) { //funcion para procesar los datos
-            if (response.code && response.code == 'ERROR') {
-                Mensaje(response.message);
-            } else {
-                
-                $('#lsPeriodos tbody tr').remove();
-                
-                $.each(response.response,function(idx,obj){
-                    var tr =   '<tr>' +
-                                    '<th width="5%"><input type="radio" name="rbPeriodo" value="" id="rb_' + obj.id_periodo_programacion + '" id_periodo_programacion="' + obj.id_periodo_programacion + '" class="selPeriodo"/></th>' +
-                                    '<th width="90%" style="text-align: left;"><label for="rb_' + obj.id_periodo_programacion + '">' + mes(obj.mes) + ' - ' + obj.anio + '</label></th>' +
-                                    '<th width="5%"><a href="#" title="Quitar Periodo" class="qPeriodo"><img src="' + URLHOST + 'images/delete_otro.png"/></a></th>'
-                                '</tr>'; 
-                    
-                    $('#lsPeriodos tbody').append(tr);
-                    
-                });
-                
-            }
-        },
-        'json'//tipo de dato devuelto
-    );
+            URLINDEX + '/programacion/getFechasPeriodo',
+            {
+                ajax: 'ajax',
+                id_periodo_programacion: id_periodo_programacion
+            }, //parametros
+    function(response) { //funcion para procesar los datos
+        if (response.code && response.code == 'ERROR') {
+            Mensaje(response.message);
+        } else {
+
+            $('#lsFechas tbody tr').remove();
+
+            $.each(response.response, function(idx, obj) {
+                var tr = '<tr>' +
+                        '<th width="5%"></th>' +
+                        '<th width="45%" style="text-align: left;"><label for="rb_' + obj.id_detalle_periodo + '">' + ponerformatofecha(obj.fecha_mensaje) + '</label></th>' +
+                        '<th width="45%" style="text-align: left;"><label for="rb_' + obj.id_detalle_periodo + '">' + ponerformatofecha(obj.fecha_final) + '</label></th>' +
+                        '<th width="5%"><a href="#" title="Quitar Fecha" class="qFecha" id_detalle_periodo="' + obj.id_detalle_periodo + '"><img src="' + URLHOST + 'images/delete_otro.png"/></a></th>' +
+                '</tr>';
+
+                $('#lsFechas tbody').append(tr);
+
+            });
+
+        }
+    },
+            'json'//tipo de dato devuelto
+            );
 }
 
-function mes(mes){
-    var nMes = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
-    return nMes[mes-1];
+function cargarPeriodo(id_programacion) {
+    $.post(
+            URLINDEX + '/programacion/getPeriodo',
+            {
+                ajax: 'ajax',
+                id_programacion: id_programacion
+            }, //parametros
+    function(response) { //funcion para procesar los datos
+        if (response.code && response.code == 'ERROR') {
+            Mensaje(response.message);
+        } else {
+
+            $('#lsPeriodos tbody tr').remove();
+
+            $.each(response.response, function(idx, obj) {
+                var tr = '<tr>' +
+                        '<th width="5%"><input type="radio" name="rbPeriodo" value="" id="rb_' + obj.id_periodo_programacion + '" id_periodo_programacion="' + obj.id_periodo_programacion + '" class="selPeriodo"/></th>' +
+                        '<th width="90%" style="text-align: left;"><label for="rb_' + obj.id_periodo_programacion + '">' + mes(obj.mes) + ' - ' + obj.anio + '</label></th>' +
+                        '<th width="5%"><a href="#" title="Quitar Periodo" class="qPeriodo" id_periodo_programacion="' + obj.id_periodo_programacion + '"><img src="' + URLHOST + 'images/delete_otro.png"/></a></th>' +
+                '</tr>';
+
+                $('#lsPeriodos tbody').append(tr);
+
+            });
+
+        }
+    },
+            'json'//tipo de dato devuelto
+            );
+}
+
+function mes(mes) {
+    var nMes = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+    return nMes[mes - 1];
 }

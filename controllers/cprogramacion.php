@@ -234,5 +234,66 @@ class cProgramacion extends ControllerBase{
         return $obj->getFields();
 
     }
+    
+    public function quitarPeriodoAjax(){
+        include_once 'models/periodo_programacion.php';
+
+        $obj = new Periodo_Programacion(array('id_periodo_programacion'=>$_REQUEST['id_periodo_programacion']));
+        $obj->estado = 'I';
+        $obj->update();
+        return $obj->getFields();
+
+    }
+    
+    public function getFechasPeriodoAjax(){
+
+        include_once 'models/detalle_periodo.php';
+        $pp = new Detalle_Periodo();
+        $pp = $pp->getAll()->WhereAnd('id_periodo_programacion=', $_REQUEST['id_periodo_programacion'])->WhereAnd('estado=', 'A')
+                ->Orderby('fecha_mensaje', true);
+        
+        return $pp->getArrayAll();
+
+    }
+    
+    public function guardarFechaAjax(){
+        include_once 'models/detalle_periodo.php';
+        
+        $fecha_mensaje = explode('/',$_REQUEST['fecha_mensaje']);
+        $fecha_mensaje = array_reverse($fecha_mensaje);
+        $fecha_mensaje = implode('-',$fecha_mensaje);
+        
+        $fecha_final = explode('/',$_REQUEST['fecha_final']);
+        $fecha_final = array_reverse($fecha_final);
+        $fecha_final = implode('-',$fecha_final);
+        
+        
+        $objLs = new Detalle_Periodo();
+        $objLs = $objLs->getAll()->WhereAnd('id_periodo_programacion=', $_REQUEST['id_periodo_programacion'])
+                ->WhereAnd('fecha_mensaje=', $fecha_mensaje)->WhereAnd('estado=', 'A');
+        
+        if ($objLs->count() > 0){
+            throw new Exception("La fecha ya esta registrado");
+        }
+        
+        $obj = new Detalle_Periodo();
+        $obj->estado = 'A';
+        $obj->fecha_mensaje = $fecha_mensaje;
+        $obj->fecha_final = $fecha_final;
+        $obj->id_periodo_programacion = $_REQUEST['id_periodo_programacion'];
+        $obj->create();
+        return $obj->getFields();
+
+    }
+    
+    public function quitarFechaAjax(){
+        include_once 'models/detalle_periodo.php';
+
+        $obj = new Detalle_Periodo(array('id_detalle_periodo'=>$_REQUEST['id_detalle_periodo']));
+        $obj->estado = 'I';
+        $obj->update();
+        return $obj->getFields();
+
+    }
 }
 ?>

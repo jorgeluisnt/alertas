@@ -28,8 +28,6 @@
 
 </div>
 
-
-
 <div id="dlgProgramacion" title="Programacion de alertas" >
 
     {include file=$datos}
@@ -192,6 +190,27 @@
                         <option value="{$p}" >{$p}</option>
                     {/foreach}
                 </select>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="dlgFechas" title="Fechas de publicacion">
+    <table>
+        <tr>
+            <td>
+                <label>Fecha Envio:</label>
+            </td>
+            <td>
+                <input type="text" name="f_fecha_mensaje" id="f_fecha_mensaje" value="" readonly="readonly" style="width: 100px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Fecha Fin Tarea:</label>
+            </td>
+            <td>
+                <input type="text" name="f_fecha_final" id="f_fecha_final" value="" readonly="readonly" style="width: 100px;"/>
             </td>
         </tr>
     </table>

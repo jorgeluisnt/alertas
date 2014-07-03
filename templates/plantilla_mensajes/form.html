@@ -27,6 +27,10 @@
             <button id="nuevo_plantilla_mensajes">Nuevo</button>
             <button id="modificar_plantilla_mensajes">Modificar</button>
             <button id="anular_plantilla_mensajes">Anular</button>
+            
+            ||
+            
+            <button id="plantilla">Definir Plantilla</button>
         </fieldset>
         
     </div>
@@ -51,5 +55,53 @@
     
 </div>
 
+<div id="dlgPlantilla" title="Definir Plantillas">
+    
+    <div style="border: solid 1px #CCC; margin-top: 10px">
+        <table class="detalle_header" style="margin-right:16px; border-spacing:0; margin-top:0; width:100%;">
+            <thead>
+                <tr>
+                    <th width="10%">N° Mensaje</th>
+                    <th width="80%">Plantilla</th>
+                    <th width="10%"><a href="#" title="Agregar Detalle Plantilla" class="addDetalle"><img src="{$HOST}images/add.png"/></a></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div style="overflow-y: scroll; overflow-x: hidden; height: 180px; border: solid 1px #CCC;">
+        <table class="table-details detalle_body" style="border: 0; width: 100%;" id="lsDetalles">
+            <thead>
+                <tr>
+                    <th width="10%"></th>
+                    <th width="80%"></th>
+                    <th width="10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
 
 
+<div id="dlgFormato" title="Definicion de la plantilla">
+    <table style="width: 720px;">
+        <tr>
+            <td  style="width: 130px;">
+                <label>Numero de Mensaje</label>
+            </td>
+            <td>
+                <input type="text" name="numero" id="numero" value="" style="width: 100px;" onkeypress="return validarNumeros(event);"/>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <label>Mensaje</label>
+            </td>
+            <td valign="top">
+                <textarea name="mensaje" id="mensaje" rows="15" cols="20" style="width: 500px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</div>

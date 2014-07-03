@@ -1013,7 +1013,7 @@ A : Area</remarks>
   <table id="TAB284" populated="true" UUID="8c53d134-3b42-4ec9-9c38-45a22b25f5dc" name="detalle_periodo" objectType="TABLE" physicalName="detalle_periodo" >
    <remarks></remarks>
    <folder id="FOLTAB2841" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL285" populated="true" UUID="10171ae0-fd24-4a8a-ab68-aaf20dff6181" autoIncrement="false" autoIncrementSequenceName="detalle_periodo_id_detalle_periodo_seq" defaultValue="" name="id_detalle_periodo" nullable="0" physicalName="id_detalle_periodo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL285" populated="true" UUID="10171ae0-fd24-4a8a-ab68-aaf20dff6181" autoIncrement="true" autoIncrementSequenceName="detalle_periodo_id_detalle_periodo_seq" defaultValue="" name="id_detalle_periodo" nullable="0" physicalName="id_detalle_periodo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL286" populated="true" UUID="e44d00c8-7f4f-4c73-b62c-c352cd6885d6" autoIncrement="false" autoIncrementSequenceName="detalle_periodo_fecha_mensaje_seq" defaultValue="" name="fecha_mensaje" nullable="0" physicalName="fecha_mensaje" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
@@ -1109,10 +1109,10 @@ A : Area</remarks>
   <table-pane table-ref="TAB232" x="91" y="683" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB242" x="445" y="535" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB255" x="1057" y="25" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB261" x="777" y="20" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB261" x="777" y="20" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB269" x="867" y="153" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB276" x="1001" y="598" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB284" x="662" y="593" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB276" x="1001" y="598" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB284" x="688" y="605" bgColor="0xfbdabb" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-link relationship-ref="REL292" pkConnection="0.4666666666666667" fkConnection="0.5333333333333333" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
   <table-link relationship-ref="REL294" pkConnection="0.6424242424242425" fkConnection="0.05238095238095238" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="20"/>
   <table-link relationship-ref="REL304" pkConnection="0.5393939393939394" fkConnection="0.4380952380952381" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
