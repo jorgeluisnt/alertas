@@ -1,0 +1,69 @@
+
+{include file=$links}
+
+<script type="text/javascript" src="{$HOST}js/modulos/alertas.lista.js"></script>
+
+<script type="text/javascript">
+
+    {$grilla}
+
+</script>
+
+<fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;width: 97%"> 
+    <legend class="ui-widget-header ui-corner-all">Filtro</legend>
+    
+    <table>
+        <tr>
+            <td>
+                <label>Estado</label>
+            </td>
+            <td>
+                <select name="estado_alerta" id="estado_alerta" style="width: 150px;">
+                    <option value='-'>AMBOS</option>
+                    <option value='PENDIENTE'>PENDIENTE</option>
+                    <option value='RECEPCIONADO'>RECEPCIONADO</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+<div style="width: 97%">
+
+        <table id="lsalertas"></table>
+        <div id="pgalertas"></div>
+
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Detalle</legend>
+            
+            <table>
+                <tr>
+                    <td>
+                        <label>TOTAL PUNTOS</label>
+                    </td>
+                    <td>
+                        <label style="color: #000099;" id="total_puntos">0.00</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;TOTAL RECEPCIONADOS</label>
+                    </td>
+                    <td>
+                        <label style="color: #000099;" id="total_recepcionados">0.00</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;TOTAL PENDIENTES</label>
+                    </td>
+                    <td>
+                        <label style="color: #000099;" id="total_pendoentes">0.00</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;&nbsp;AVANCE</label>
+                    </td>
+                    <td>
+                        <label style="color: #000099;" id="total_avance">0.00 %</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>

@@ -16,6 +16,25 @@
                 </select>
             </td>           
         </tr>
+        <tr>
+            <td colspan="2">
+                <label>Puntaje:</label><br/>
+                <input type="text" name="puntaje" id="puntaje" class="text ui-widget-content ui-corner-all" style="width: 100px" onkeypress="return validarNumeros(event);"/>
+            </td>           
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label>Periodicidad</label><br/>
+                <select name="tipo_periodo" id="tipo_periodo" style="width: 150px" title="Seleccione periodo de inicio">
+                    <option value="DIARIO">DIARIO</option>
+                    <option value="MENSUAL">MENSUAL</option>
+                    <option value="TRIMESTRAL">TRIMESTRAL</option>
+                    <option value="SEMESTRAL">SEMESTRAL</option>
+                    <option value="ANUAL">ANUAL</option>
+                    <option value="VARIABLE">VARIABLE</option>
+                </select>
+            </td>           
+        </tr>
         <!--<tr>
             <td>
                 <label>Dias entre mensaje:</label><br/>

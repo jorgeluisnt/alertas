@@ -146,7 +146,24 @@ $(document).ready(function() {
             error.insertAfter(element.parent().find('label:first'));
         },
         submitHandler: function() {
-
+            
+            var usuario = '--';
+            var clave = '--';
+            
+            if ( $('#es_usuario').is(':checked') ){
+                if ($('#usuario').val() == ''){
+                    Mensaje('Ingrese un usuario');
+                    return;
+                }
+                if ($('#clave').val() == ''){
+                    Mensaje('Ingrese una clave');
+                    return;
+                }
+                
+                usuario = $('#usuario').val();
+                clave = $('#clave').val();
+            }
+            
             $.post(
                     URLINDEX + '/funcionario/guardar',
                     {
@@ -156,8 +173,8 @@ $(document).ready(function() {
                         direccion: $("#direccion").val().toUpperCase(),
                         dni: $("#dni").val().toUpperCase(),
                         email: $("#email").val().toLowerCase(),
-                        usuario: $("#usuario").val().toLowerCase(),
-                        clave: $("#clave").val().toLowerCase(),
+                        usuario: usuario,
+                        clave: clave,
                         id_oficina: $("#id_oficina").val(),
                         id_funcionario: $("#id_funcionario").val(),
                         id_funcionario_jefe: $("#id_funcionario_jefe").val(),
@@ -222,7 +239,10 @@ $(document).ready(function() {
         limpiaForm($('#oform'), true);
         $("#id_funcionario").val(-1)
         $('#frm_funcionario').dialog("open");
-
+        $('#es_usuario').remove('checked');
+        $("#usuario").val('');
+        $("#clave").val('');
+        $('#es_usuario').change();
     });
 
 
@@ -261,7 +281,15 @@ $(document).ready(function() {
 
                 cargarCargos(response.response.id_cargo);
                 $('#frm_funcionario').dialog("open");
-
+                
+                if(response.response.usuario == '--'){
+                    $('#es_usuario').remove('checked');
+                    $("#usuario").val('');
+                    $("#clave").val('');
+                }else{
+                    $('#es_usuario').attr('checked','checked');
+                }
+                $('#es_usuario').change();
             },
                     'json'//tipo de dato devuelto
                     );
@@ -334,4 +362,15 @@ $(document).ready(function() {
                 );
 
     };
+    
+    $('#es_usuario').change(function(){
+        
+        if ($('#es_usuario').is(':checked')){
+            $('#trUsuario').show();
+        }else{
+            $('#trUsuario').hide();
+        }
+        
+    });
+    
 });

@@ -32,19 +32,6 @@
                                 <input type="text" id="email" class="text ui-widget-content ui-corner-all" value="" style="width: 250px;text-transform: lowercase;" name="email" />
                             </td>
                         </tr>
-                         {if $perfil eq 1}
-                        <tr>
-                            <td>
-                                
-                                <label class="required" for="usuario">Usuario:</label><br/>
-                                <input type="text" id="usuario" class="text ui-widget-content ui-corner-all" value="" style="width: 250px;text-transform: lowercase;" name="usuario"/>
-                            </td>
-                            <td>
-                                <label class="required" for="clave">Clave:</label><br/>
-                                <input type="password" id="clave" class="text ui-widget-content ui-corner-all" value="" style="width: 250px" name="clave"/>
-                            </td>
-                        </tr>
-                        {/if}
                         <tr>
                             <td colspan="2">
                                 <label class="required" for="id_oficina">Dependencia:</label><br/>
@@ -73,6 +60,24 @@
                                 </select>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="checkbox" name="es_usuario" id="es_usuario" value="ON" /><label class="required" for="usuario">¿Es Usuario del sistema?</label><br/>
+                            </td>
+                        </tr>
+                         {if $perfil eq 1}
+                             <tr id="trUsuario" style="display: none;">
+                                <td>
+
+                                    <label class="required" for="usuario">Usuario:</label><br/>
+                                    <input type="text" id="usuario" class="text ui-widget-content ui-corner-all" value="" style="width: 250px;text-transform: lowercase;" name="usuario"/>
+                                </td>
+                                <td>
+                                    <label class="required" for="clave">Clave:</label><br/>
+                                    <input type="password" id="clave" class="text ui-widget-content ui-corner-all" value="" style="width: 250px" name="clave"/>
+                                </td>
+                            </tr>
+                        {/if}
                     </table>
 
         </form>

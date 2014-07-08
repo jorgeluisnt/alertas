@@ -197,6 +197,7 @@ $(document).ready(function() {
     
     $('.addDetalle').click(function(){
         
+        $('#numero').data('id_detalle_plantilla','-1');
         $('#dlgFormato').dialog('open');
 
     });
@@ -242,7 +243,7 @@ $(document).ready(function() {
             function(response) {
 
                 $('#numero').val(response.response.numero);
-                $('#numero').data('id_detalle_plantilla',response.response.numero);
+                $('#numero').data('id_detalle_plantilla',response.response.id_detalle_plantilla);
                 $('#mensaje').jqteVal(response.response.mensaje);
                 $('#dlgFormato').dialog('open');
                 

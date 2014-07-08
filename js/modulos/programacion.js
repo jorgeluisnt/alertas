@@ -28,14 +28,16 @@ $(document).ready(function() {
             num_dias_entre_mensaje: {required: true},
             num_max_mensajes: {required: true},
             tipo_periodo: {required: true},
-            num_unidades_periodo: {required: true}
+            num_unidades_periodo: {required: true},
+            puntaje: {required: true}
         },
         messages: {
             descripcion: {required: "Ingrese descripcion"},
             fecha_inicia_alerta: {required: "Ingrese Inicia Alertas"},
             num_dias_entre_mensaje: {required: "Ingrese Dias Entre Mensajes"},
             num_max_mensajes: {required: "Ingrese Num Max Mensajes"},
-            num_unidades_periodo: {required: "Ingrese Numero Periodo"}
+            num_unidades_periodo: {required: "Ingrese Numero Periodo"},
+            puntaje: {required: "Ingrese puntaje"}
         },
         // the errorPlacement has to take the layout into account
         errorPlacement: function(error, element) {
@@ -55,9 +57,10 @@ $(document).ready(function() {
                         descripcion: $("#descripcion").val().toUpperCase(),
                         fecha_inicia_alerta: '',
                         id_plantilla_mensajes: $("#id_plantilla_mensajes").val().toUpperCase(),
+                        puntaje: $("#puntaje").val().toUpperCase(),
                         num_dias_entre_mensaje: 1,
                         num_max_mensajes: 0,
-                        tipo_periodo: 'POR MES',
+                        tipo_periodo: $('#tipo_periodo').val(),
                         num_unidades_periodo: 1,
                         id_programacion: $("#id_programacion").val()
                     }, //parametros
@@ -118,9 +121,10 @@ $(document).ready(function() {
                         $("#descripcion").val(response.response.descripcion);
 //                        $("#fecha_inicia_alerta").val(response.response.fecha_inicia_alerta);
                         $("#id_plantilla_mensajes").val(response.response.id_plantilla_mensajes);
+                        $("#puntaje").val(response.response.puntaje);
 //                        $("#num_dias_entre_mensaje").val(response.response.num_dias_entre_mensaje);
 //                        $("#num_max_mensajes").val(response.response.num_max_mensajes);
-//                        $("#tipo_periodo").val(response.response.tipo_periodo);
+                        $("#tipo_periodo").val(response.response.tipo_periodo);
 //                        $("#num_unidades_periodo").val(response.response.num_unidades_periodo);
                         $("#id_programacion").val(response.response.id_programacion);
                         $('#dlgProgramacion').dialog('open');

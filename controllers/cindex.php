@@ -17,7 +17,8 @@ class cIndex extends ControllerBase{
         "oficina"=>"cOficina",
         "perfil"=>"cPerfil",
         "plantilla_mensajes"=>"cPlantilla_Mensajes",
-        "programacion"=>"cProgramacion"
+        "programacion"=>"cProgramacion",
+        "alertas"=>"cAlertas"
          );
 
     protected function init(){

@@ -1,0 +1,81 @@
+
+{include file=$links}
+
+<script type="text/javascript" src="{$HOST}js/modulos/alertas.js"></script>
+
+<script type="text/javascript">
+
+    {$grilla}
+
+</script>
+
+
+<div style="width: 97%">
+
+        <table id="lsalertas"></table>
+        <div id="pgalertas"></div>
+
+        <fieldset class="ui-widget ui-widget-content" style="margin-top: 5px;"> 
+            <legend class="ui-widget-header ui-corner-all">Operaciones</legend>
+
+            <button id="nuevo_alertas">Ver Mensajes</button>
+            <button id="recepcionar_alertas">Recepcionar Informacion</button>
+            <button id="reenviar_alertas">Reenviar Mensajes</button>
+            
+        </fieldset>
+
+</div>
+
+<div id="dlgRecepcionar" title="Recepcionar Informacion" style="display: none;">
+    
+    <table>
+        <tr>
+            <td>
+                <label>Fecha Recepcion</label>
+            </td>
+            <td>
+                <input type="text" id="fecha_fin" value="" class="text ui-widget-content ui-corner-all" style="width: 100px" name="fecha_fin" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Observaciones</label>
+            </td>
+            <td>
+                <textarea name="observaciones" id="observaciones" rows="4" cols="20" style="width: 300px;"></textarea>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+
+<div id="dlgMensajesEnviados" title="Lista de Mensajes Enviados">
+    <div style="border: solid 1px #CCC; margin-top: 10px">
+        <table class="detalle_header" style="margin-right:16px; border-spacing:0; margin-top:0; width:100%;">
+            <thead>
+                <tr>
+                    <th width="10%">Fecha Envio</th>
+                    <th width="85%">Funcionario</th>
+                    <th width="5%">Ver</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div style="overflow-y: scroll; overflow-x: hidden; height: 180px; border: solid 1px #CCC;">
+        <table class="table-details detalle_body" style="border: 0; width: 100%;" id="lsMensajesEnviados">
+            <thead>
+                <tr>
+                    <th width="10%"></th>
+                    <th width="85%"></th>
+                    <th width="5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="dlgVerMensaje" title="Mensaje Enviado">
+    <div id="valMsg"></div>
+</div>
