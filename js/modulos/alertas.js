@@ -75,6 +75,10 @@ $(document).ready(function(){
                                         Mensaje('Seleccione fecha fin');
                                         return;
                                     }
+                                    if ($('#link_archivo_subido').val() == ''){
+                                        Mensaje('Seleccione Link Archivo');
+                                        return;
+                                    }
                                     if ($('#observaciones').val() == ''){
                                         Mensaje('Ingrese observaciones');
                                         return;
@@ -86,6 +90,7 @@ $(document).ready(function(){
                                             ajax: 'ajax',
                                             id_alertas:indexR,
                                             fecha_fin: $('#fecha_fin').val(),
+                                            link_archivo_subido: $('#link_archivo_subido').val(),
                                             observaciones: $('#observaciones').val()
                                         }, //parametros
                                         function(response) { //funcion para procesar los datos

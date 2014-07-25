@@ -1,7 +1,7 @@
 <?php
 
-require_once('adodb/adodb.inc.php');
-include_once('adodb/adodb-exceptions.inc.php');
+require_once('phpORM/adodb/adodb.inc.php');
+include_once('phpORM/adodb/adodb-exceptions.inc.php');
 
 include_once("ORMException.php");
 

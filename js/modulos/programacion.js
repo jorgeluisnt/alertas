@@ -20,6 +20,18 @@ $(document).ready(function() {
         dateFormat: 'dd/mm/yy'
     });
     
+    $("#f_fecha_mensaje_add").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+    
+    $("#f_fecha_final_add").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+    
     $("#frm_programacion").validate({
         rules: {
             descripcion: {required: true},
@@ -526,6 +538,111 @@ $(document).ready(function() {
         }else{
             Mensaje('Seleccione un periodo');
         }
+        
+    });
+
+    $('#DlgMasivo').dialog({
+        autoOpen: false,
+        width: 320,
+        position: 'top',
+        modal: true,
+        buttons: {
+            Agregar: function() {
+                
+                if($('#lsFechasAdd tbody tr').length == 0){
+                    Mensaje('Ingrese fechas');
+                    return;
+                }
+                
+                var fechas = [];
+                $('#lsFechasAdd tbody tr').each(function(idx,obj){
+                    fechas.push({
+                        inicio : $(obj).find('.inicio').text(),
+                        fin : $(obj).find('.fin').text()
+                    });
+                });
+                
+                $.post(
+                        URLINDEX + '/programacion/asignarFechas',
+                        {
+                            ajax: 'ajax',
+                            tipo_pe: $('#tipo_pe').val(),
+                            anio_per: $('#anio_per').val(),
+                            mes_per: $('#mes_per').val(),
+                            fechas : fechas
+                        }, //parametros
+                        function(response) { //funcion para procesar los datos
+                            if (response.code && response.code == 'ERROR') {
+                                Mensaje(response.message);
+                            } else {
+                                Mensaje('Datos asignados correctamente<br/>Detalle:<br/>Total de alertas: ' + response.response.total + '<br/>Total Asignados: ' + response.response.registrados);
+                                $('#DlgMasivo').dialog('open');
+                            }
+                        },
+                        'json'//tipo de dato devuelto
+                );
+                
+            },
+            Cerrar: function() {
+                $(this).dialog("close");
+            }
+        },
+        close: function() {
+            limpiaForm($('#oform'), false);
+        }
+    });
+    
+    $('#dlgFechasAdd').dialog({
+        autoOpen: false,
+        width: 320,
+        position: 'top',
+        modal: true,
+        buttons: {
+            Agregar: function() {
+                
+                if($('#f_fecha_mensaje_add').val() == ''){
+                    Mensaje('Seleccione fecha mensaje');
+                    return;
+                }
+                if($('#f_fecha_final_add').val() == ''){
+                    Mensaje('Seleccione fecha final');
+                    return;
+                }
+                
+                var tr = '<tr>' +
+                        '<th width="45%" style="text-align: left;"><label class="inicio">' + $('#f_fecha_mensaje_add').val() + '</label></th>' +
+                        '<th width="45%" style="text-align: left;"><label class="fin">' + $('#f_fecha_final_add').val() + '</label></th>' +
+                        '<th width="5%"><a href="#" title="Quitar Fecha" class="qFechaAdd" ><img src="' + URLHOST + 'images/delete_otro.png"/></a></th>' +
+                '</tr>';
+
+                $('#lsFechasAdd tbody').append(tr);
+                
+                $(this).dialog("close");
+            },
+            cerrar: function() {
+                $(this).dialog("close");
+            }
+        },
+        close: function() {
+            limpiaForm($('#oform'), false);
+        }
+    });
+
+    $(".addFechasAdd").click(function() {
+        $('#dlgFechasAdd').dialog('open');   
+        $('#f_fecha_mensaje_add').val('');
+        $('#f_fecha_final_add').val('');
+    });
+    
+    $("#fechas_masivas").button().click(function() {
+        $('#DlgMasivo').dialog('open');
+        $('#lsFechasAdd tbody tr').remove();
+    });
+    
+    $(document).on('click', '.qFechaAdd', function(e) {
+        e.preventDefault();
+
+        $(this).parent().parent().remove();
         
     });
 

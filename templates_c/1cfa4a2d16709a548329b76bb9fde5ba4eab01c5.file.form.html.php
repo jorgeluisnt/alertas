@@ -1,16 +1,16 @@
-<?php /* Smarty version 3.0rc1, created on 2014-07-04 14:12:11
+<?php /* Smarty version 3.0rc1, created on 2014-07-21 18:51:19
          compiled from "./templates/alertas/form.html" */ ?>
-<?php /*%%SmartyHeaderCode:195290692353b6fc8b0756d7-98433145%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:87443700153cda7774da691-57924001%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1cfa4a2d16709a548329b76bb9fde5ba4eab01c5' => 
     array (
       0 => './templates/alertas/form.html',
-      1 => 1404500938,
+      1 => 1405986634,
     ),
   ),
-  'nocache_hash' => '195290692353b6fc8b0756d7-98433145',
+  'nocache_hash' => '87443700153cda7774da691-57924001',
   'function' => 
   array (
   ),
@@ -57,6 +57,14 @@ js/modulos/alertas.js"></script>
             </td>
             <td>
                 <input type="text" id="fecha_fin" value="" class="text ui-widget-content ui-corner-all" style="width: 100px" name="fecha_fin" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Link Archivo</label>
+            </td>
+            <td>
+                <input type="text" id="link_archivo_subido" value="" class="text ui-widget-content ui-corner-all" style="width: 300px" name="link_archivo_subido" />
             </td>
         </tr>
         <tr>

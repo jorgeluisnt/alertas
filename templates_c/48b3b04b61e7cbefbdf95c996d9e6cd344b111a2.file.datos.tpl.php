@@ -1,4 +1,23 @@
-<div id="frm_funcionario" title="Administrar Funcionario">
+<?php /* Smarty version 3.0rc1, created on 2014-07-21 18:59:29
+         compiled from "./templates/funcionario/datos.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:142078369353cda961cc84f3-58144253%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '48b3b04b61e7cbefbdf95c996d9e6cd344b111a2' => 
+    array (
+      0 => './templates/funcionario/datos.tpl',
+      1 => 1405986868,
+    ),
+  ),
+  'nocache_hash' => '142078369353cda961cc84f3-58144253',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+)); /*/%%SmartyHeaderCode%%*/?>
+<?php if (!is_callable('smarty_modifier_replace')) include '/mnt/Datos/Proyectos/php/alertas/smarty/plugins/modifier.replace.php';
+?><div id="frm_funcionario" title="Administrar Funcionario">
     
 
     <form id="oform" method="post" action="#" >
@@ -43,9 +62,15 @@
                             <td colspan="2">
                                 <label class="required" for="id_oficina">Dependencia:</label><br/>
                                 <select name="id_oficina" id="id_oficina" style="width: 500px;" title="Seleccione una oficina" onchange="cargarCargos();">
-                                    {foreach from=$oficina item="p"}
-                                        <option value="{$p['id_oficina']}" >{$p['nombre']|replace:"=":"&nbsp;"}</option>
-                                    {/foreach}
+                                    <?php  $_smarty_tpl->tpl_vars["p"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->getVariable('oficina')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if (count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars["p"]->key => $_smarty_tpl->tpl_vars["p"]->value){
+?>
+                                        <option value="<?php echo $_smarty_tpl->getVariable('p')->value['id_oficina'];?>
+" ><?php echo smarty_modifier_replace($_smarty_tpl->getVariable('p')->value['nombre'],"=","&nbsp;");?>
+</option>
+                                    <?php }} ?>
                                 </select>
                             </td>
                         </tr>
@@ -61,9 +86,15 @@
                                 <label class="required" for="id_funcionario_jefe">Jefe:</label><br/>
                                 <select name="id_funcionario_jefe" id="id_funcionario_jefe" style="width: 500px;" title="Seleccione una jefe">
                                     <option value="0" >NINGUNO</option>
-                                    {foreach from=$funcionarios item="p"}
-                                        <option value="{$p['id_funcionario']}" >{$p['funcionario']}</option>
-                                    {/foreach}
+                                    <?php  $_smarty_tpl->tpl_vars["p"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->getVariable('funcionarios')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if (count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars["p"]->key => $_smarty_tpl->tpl_vars["p"]->value){
+?>
+                                        <option value="<?php echo $_smarty_tpl->getVariable('p')->value['id_funcionario'];?>
+" ><?php echo $_smarty_tpl->getVariable('p')->value['funcionario'];?>
+</option>
+                                    <?php }} ?>
                                 </select>
                             </td>
                         </tr>
@@ -72,7 +103,7 @@
                                 <input type="checkbox" name="es_usuario" id="es_usuario" value="ON" /><label class="required" for="usuario">¿Es Usuario del sistema?</label><br/>
                             </td>
                         </tr>
-                         {if $perfil eq 1}
+                         <?php if ($_smarty_tpl->getVariable('perfil')->value==1){?>
                              <tr id="trUsuario" style="display: none;">
                                 <td>
 
@@ -84,7 +115,7 @@
                                     <input type="password" id="clave" class="text ui-widget-content ui-corner-all" value="" style="width: 250px" name="clave"/>
                                 </td>
                             </tr>
-                        {/if}
+                        <?php }?>
                     </table>
 
         </form>

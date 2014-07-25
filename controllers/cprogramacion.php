@@ -308,6 +308,12 @@ class cProgramacion extends ControllerBase{
 
     }
     
+    public function ejecutaResultadosAction(){
+        
+        Programacion::ejecutaResultados();
+
+    }
+    
     public function reenviarMensajesAjax(){
         
         $alertas = $_REQUEST['alertas'];
@@ -318,6 +324,59 @@ class cProgramacion extends ControllerBase{
         }
         
         return array('ok');
+
+    }
+    
+    public function asignarFechasAjax(){
+        
+        $tipo_pe = $_REQUEST['tipo_pe'];
+        $anio_per = $_REQUEST['anio_per'];
+        $mes_per = $_REQUEST['mes_per'];
+        $fechas = $_REQUEST['fechas'];
+        
+        $datos = new Programacion();
+        $datos = $datos->getAll()->WhereAnd('estado=', 'A')->WhereAnd('tipo_periodo=', $tipo_pe);
+        
+        $total = $datos->count();
+        $registrados = 0;
+        
+        include_once 'models/periodo_programacion.php';
+        include_once 'models/detalle_periodo.php';
+        
+        foreach ($datos as $prog) {
+            $periodo_programacion = new Periodo_Programacion();
+            $periodo_programacion = $periodo_programacion->getAll()
+                    ->WhereAnd('estado=', 'A')
+                    ->WhereAnd('id_programacion=', $prog->id_programacion)
+                    ->WhereAnd('mes=', $mes_per)
+                    ->WhereAnd('anio=', $anio_per);
+            
+            if ($periodo_programacion->count() > 0){
+                
+            }else{
+                $registrados = $registrados + 1;
+                
+                $periodo_programacion = new Periodo_Programacion();
+                $periodo_programacion->estado = 'A';
+                $periodo_programacion->id_programacion = $prog->id_programacion;
+                $periodo_programacion->mes = $mes_per;
+                $periodo_programacion->anio = $anio_per;
+                $periodo_programacion->create();
+                
+                foreach ($fechas as $value) {
+                    $detalle_periodo = new Detalle_Periodo();
+                    $detalle_periodo->estado = 'A';
+                    $detalle_periodo->fecha_mensaje = $detalle_periodo->getFecha($value['inicio']);
+                    $detalle_periodo->fecha_final = $detalle_periodo->getFecha($value['fin']);
+                    $detalle_periodo->id_periodo_programacion = $periodo_programacion->id_periodo_programacion;
+                    $detalle_periodo->create();
+                }
+                
+            }
+            
+        }
+        
+        return array('total'=>$total,'registrados'=>$registrados);
 
     }
     

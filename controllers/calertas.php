@@ -44,6 +44,7 @@ class cAlertas extends ControllerBase{
         $grilla->addColumnas("f.apellidos", "Apellidos Funcionario",250);
         $grilla->addColumnas("a.fecha_inicio", "Fecha Incio");
         $grilla->addColumnas("a.fecha_fin", "Fecha Fin");
+        $grilla->addColumnas("a.fecha_recepcion", "Fecha Recepcion");
         $grilla->addColumnas("a.num_envios", "Numero Envios");
         $grilla->addColumnas("a.estado_alerta", "Estado Alerta");
 
@@ -72,6 +73,7 @@ class cAlertas extends ControllerBase{
 	f.apellidos,
 	to_char(a.fecha_inicio,'dd/MM/yyyy') as fecha_inicio,
 	to_char(a.fecha_fin,'dd/MM/yyyy') as fecha_fin,
+        to_char(a.fecha_recepcion,'dd/MM/yyyy') as fecha_recepcion,
 	a.num_envios,
 	a.estado_alerta ");
         
@@ -172,8 +174,9 @@ class cAlertas extends ControllerBase{
         try{
             $obj->find($_REQUEST);
 
-            $obj->fecha_fin = $obj->getFecha($_REQUEST['fecha_fin']);
+            $obj->fecha_recepcion = $obj->getFecha($_REQUEST['fecha_fin']);
             $obj->observaciones_fin = $_REQUEST['observaciones'];
+            $obj->link_archivo_subido = $_REQUEST['link_archivo_subido'];
             $obj->estado_alerta = 'RECEPCIONADO';
 
             $obj->update();
@@ -203,6 +206,7 @@ class cAlertas extends ControllerBase{
         $grilla->addColumnas("f.apellidos", "Apellidos Funcionario",250);
         $grilla->addColumnas("a.fecha_inicio", "Fecha Incio");
         $grilla->addColumnas("a.fecha_fin", "Fecha Fin");
+        $grilla->addColumnas("a.fecha_recepcion", "Fecha Recepcion");
         $grilla->addColumnas("a.num_envios", "Numero Envios");
         $grilla->addColumnas("a.estado_alerta", "Estado Alerta");
 

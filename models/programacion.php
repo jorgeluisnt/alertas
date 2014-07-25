@@ -9,6 +9,10 @@
     class Programacion extends ORMBase{
        protected $tablename = 'alertas.programacion';
        
+       private $email_desde = 'jorgeluisntqgmail.com';
+       private $email_responsable = 'jorgeluisntqgmail.com';
+       
+       
        public static function ejecutaProgramacion($fecha=null,$programacion='0',$id_cargo=0){
            
            if ($fecha == null){
@@ -56,6 +60,7 @@
                                 f.direccion,
                                 f.dni,
                                 f.email,
+                                f.email_2,
                                 f.id_funcionario_jefe
                         from alertas.cargos_asignados ca
                         inner join alertas.funcionario f on ca.id_cargo = f.id_cargo
@@ -80,7 +85,8 @@
                         $alerta = new Alertas();
                         $alerta->descripcion = $programacion['descripcion'];
                         $alerta->fecha_inicio = $programacion['fecha_mensaje'];
-                        $alerta->fecha_fin = null;
+                        $alerta->fecha_fin = $programacion['fecha_final'];
+                        $alerta->fecha_recepcion = null;
                         $alerta->num_envios = 1;
                         $alerta->estado_alerta = 'PENDIENTE';
                         $alerta->observaciones_fin = '';
@@ -173,7 +179,7 @@
            }
            
            $lista_envio = array();
-           $lista_email[] = array('email'=>$funcionario['email'],'funcionario'=>$funcionario['nombres'] . ' ' .$funcionario['apellidos']);
+           $lista_email[] = array('email'=>$funcionario['email'],'email_2'=>$funcionario['email_2'],'funcionario'=>$funcionario['nombres'] . ' ' .$funcionario['apellidos']);
            
            //VERIFICAMOS SI ES MAS DEL PRIMER MENSAJE PARA ENVIAR A LOS JEFES
            if ($num_mensaje > 1 && $funcionario['id_funcionario_jefe'] != '0'){
@@ -182,7 +188,7 @@
                 if ( $num_mensaje >= 2){
                     try {
                         $jefe = new Funcionario(array('id_funcionario'=>$funcionario['id_funcionario_jefe']));
-                        $lista_email[] = array('email'=>$jefe->email,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
+                        $lista_email[] = array('email'=>$jefe->email,'email_2'=>$jefe->email_2,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
                     } catch (Exception $exc) {
                         $jefe = null;
                     }
@@ -190,7 +196,7 @@
                 if ( $num_mensaje >= 3 && $jefe != null){
                     try {
                         $jefe = new Funcionario(array('id_funcionario'=>$jefe->id_funcionario_jefe));
-                        $lista_email[] = array('email'=>$jefe->email,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
+                        $lista_email[] = array('email'=>$jefe->email,'email_2'=>$jefe->email_2,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
                     } catch (Exception $exc) {
                         $jefe = null;
                     }
@@ -201,12 +207,15 @@
             //ENVIAR EMAIL
             $asunto = 'Recordatorio de informacion de transparencia';
             $cuerpo = $cuerpo_mensaje;
-            $header = 'From: jorgeluisnt@gmail.com \r\n';
+            $header = 'From: '.$this->email_desde.' \r\n';
             $header .= "Mime-Version: 1.0 \r\n";
             $header .= "Content-Type: text/html";
             
             foreach ($lista_email as $email) {
                  mail($email['email'], $asunto, utf8_decode($cuerpo), $header);
+                 if ($email['email_2'] != null & $email['email_2'] != ''){
+                    mail($email['email_2'], $asunto, utf8_decode($cuerpo), $header);
+                 }
             }           
            
             print_r("EJECUTADO");
@@ -227,7 +236,7 @@
                 
                 
                 $lista_envio = array();
-                $lista_email[] = array('email'=>$funcionario->email,'funcionario'=>$funcionario->nombres . ' ' .$funcionario->apellidos);
+                $lista_email[] = array('email'=>$funcionario->email,'email_2'=>$funcionario->email_2,'funcionario'=>$funcionario->nombres . ' ' .$funcionario->apellidos);
 
                 //VERIFICAMOS SI ES MAS DEL PRIMER MENSAJE PARA ENVIAR A LOS JEFES
                 if ($mensaje->num_mensaje > 1 && $funcionario->id_funcionario_jefe != '0'){
@@ -236,7 +245,7 @@
                      if ( $num_mensaje >= 2){
                          try {
                              $jefe = new Funcionario(array('id_funcionario'=>$funcionario->id_funcionario_jefe));
-                             $lista_email[] = array('email'=>$jefe->email,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
+                             $lista_email[] = array('email'=>$jefe->email,'email_2'=>$jefe->email_2,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
                          } catch (Exception $exc) {
                              $jefe = null;
                          }
@@ -244,7 +253,7 @@
                      if ( $num_mensaje >= 3 && $jefe != null){
                          try {
                              $jefe = new Funcionario(array('id_funcionario'=>$jefe->id_funcionario_jefe));
-                             $lista_email[] = array('email'=>$jefe->email,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
+                             $lista_email[] = array('email'=>$jefe->email,'email_2'=>$jefe->email_2,'funcionario'=>$jefe->nombres . ' ' .$jefe->apellidos);
                          } catch (Exception $exc) {
                              $jefe = null;
                          }
@@ -255,12 +264,15 @@
                  //ENVIAR EMAIL
                  $asunto = 'Recordatorio de informacion de transparencia';
                  $cuerpo = $cuerpo_mensaje;
-                 $header = 'From: jorgeluisnt@gmail.com \r\n';
+                 $header = 'From: '.$this->email_desde.' \r\n';
                  $header .= "Mime-Version: 1.0 \r\n";
                  $header .= "Content-Type: text/html";
 
                  foreach ($lista_email as $email) {
-                      mail($email['email'], $asunto, utf8_decode($cuerpo), $header);
+                    mail($email['email'], $asunto, utf8_decode($cuerpo), $header);
+                    if ($email['email_2'] != null & $email['email_2'] != ''){
+                       mail($email['email_2'], $asunto, utf8_decode($cuerpo), $header);
+                    }
                  }     
             
             }
@@ -268,5 +280,47 @@
             return array('ok');
        }
        
+       public static function ejecutaResultados(){
+            $hoy = date( "Y-m-d" );
+            $ayer = date( "Y-m-d", strtotime( "-1 day", strtotime( $hoy ) ) );  
+            
+           $sql = "select 
+                        p.descripcion as programacion,
+                        count(a.id_alertas) as total,
+                        (select count(aa.id_alertas) from alertas.alertas aa 
+                                where aa.id_programacion = p.id_programacion 
+                                and aa.estado = 'A' and aa.fecha_fin = '$ayer' 
+                                and aa.estado_alerta = 'PENDIENTE' ) as pendiente,	
+                        (select count(aa.id_alertas) from alertas.alertas aa 
+                                where aa.id_programacion = p.id_programacion 
+                                and aa.estado = 'A' and aa.fecha_fin = '$ayer' 
+                                and aa.estado_alerta = 'RECEPCIONADO' ) as recepcionados
+                from alertas.alertas a
+                inner join alertas.programacion p on a.id_programacion = p.id_programacion
+                where a.estado = 'A' and a.fecha_fin = '$ayer'
+                group by p.descripcion,p.id_programacion ";
+           
+           $datos = ORMConnection::Execute($sql);
+            
+           $sql = "update alertas.alertas set estado_alerta = 'VENCIDO' where estado = 'A' and fecha_fin = '$ayer' and estado_alerta = 'PENDIENTE'";
+           ORMConnection::Execute($sql);
+           
+           $html = "<b>El dia $ayer se vencio el plazo de unas alertas:</b>";
+           
+           $html = $html."<table>";
+           $html = $html."<tr><td>Descripcion</td><td>Total Mensajes</td><td>Mensajes Recepcionados</td><td>Mensajes Pendientes</td></tr>";
+           foreach ($datos as $value) {
+               $html = $html."<tr><td>".$value['programacion']."</td><td>".$value['total']."</td><td>".$value['recepcionados']."</td><td>".$value['pendiente']."</td></tr>";
+           }
+           $html = $html."</table>";
+           
+            //ENVIAR EMAIL
+            $asunto = 'Resumen de alertas';
+            $header = 'From: '.$this->email_desde.' \r\n';
+            $header .= "Mime-Version: 1.0 \r\n";
+            $header .= "Content-Type: text/html";
+             mail($this->email_responsable, $asunto, utf8_decode($html), $header);
+           return array('ok');
+       }
     }
 ?>

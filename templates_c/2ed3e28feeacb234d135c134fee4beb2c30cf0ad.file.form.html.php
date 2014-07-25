@@ -1,11 +1,34 @@
+<?php /* Smarty version 3.0rc1, created on 2014-07-24 19:30:46
+         compiled from "./templates/programacion/form.html" */ ?>
+<?php /*%%SmartyHeaderCode:73992257753d1a536a96e05-25372223%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '2ed3e28feeacb234d135c134fee4beb2c30cf0ad' => 
+    array (
+      0 => './templates/programacion/form.html',
+      1 => 1406246809,
+    ),
+  ),
+  'nocache_hash' => '73992257753d1a536a96e05-25372223',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+)); /*/%%SmartyHeaderCode%%*/?>
+<?php if (!is_callable('smarty_modifier_replace')) include '/mnt/Datos/Proyectos/php/alertas/smarty/plugins/modifier.replace.php';
+?>
+<?php $_template = new Smarty_Internal_Template($_smarty_tpl->getVariable('links')->value, $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
 
-{include file=$links}
 
-<script type="text/javascript" src="{$HOST}js/modulos/programacion.js"></script>
+<script type="text/javascript" src="<?php echo $_smarty_tpl->getVariable('HOST')->value;?>
+js/modulos/programacion.js"></script>
 
 <script type="text/javascript">
 
-    {$grilla}
+    <?php echo $_smarty_tpl->getVariable('grilla')->value;?>
+
 
 </script>
 
@@ -31,7 +54,9 @@
 
 <div id="dlgProgramacion" title="Programacion de alertas" >
 
-    {include file=$datos}
+    <?php $_template = new Smarty_Internal_Template($_smarty_tpl->getVariable('datos')->value, $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
+
 
 </div>
 
@@ -46,9 +71,15 @@
                     <td colspan="2">
                         <select name="id_oficina" id="id_oficina" style="width: 300px;" title="Seleccione una oficina" onchange="cargarCargos();">
                             <option value="0" >.: SELECCIONE :.</option>
-                            {foreach from=$oficina item="p"}
-                                <option value="{$p['id_oficina']}" >{$p['nombre']|replace:"=":"&nbsp;"}</option>
-                            {/foreach}
+                            <?php  $_smarty_tpl->tpl_vars["p"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->getVariable('oficina')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if (count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars["p"]->key => $_smarty_tpl->tpl_vars["p"]->value){
+?>
+                                <option value="<?php echo $_smarty_tpl->getVariable('p')->value['id_oficina'];?>
+" ><?php echo smarty_modifier_replace($_smarty_tpl->getVariable('p')->value['nombre'],"=","&nbsp;");?>
+</option>
+                            <?php }} ?>
                         </select>
                     </td>
                 </tr>
@@ -108,7 +139,8 @@
                             <tr>
                                 <th width="5%"></th>
                                 <th width="95%">Periodos</th>
-                                <th width="5%"><a href="#" title="Agregar Periodo" class="addPeriodo"><img src="{$HOST}images/add.png"/></a></th>
+                                <th width="5%"><a href="#" title="Agregar Periodo" class="addPeriodo"><img src="<?php echo $_smarty_tpl->getVariable('HOST')->value;?>
+images/add.png"/></a></th>
                             </tr>
                         </thead>
                     </table>
@@ -135,7 +167,8 @@
                                 <th width="5%"></th>
                                 <th width="45%">Fecha Alerta</th>
                                 <th width="45%">Fecha Final</th>
-                                <th width="5%"><a href="#" title="Agregar Fechas" class="addFechas"><img src="{$HOST}images/add.png"/></a></th>
+                                <th width="5%"><a href="#" title="Agregar Fechas" class="addFechas"><img src="<?php echo $_smarty_tpl->getVariable('HOST')->value;?>
+images/add.png"/></a></th>
                             </tr>
                         </thead>
                     </table>
@@ -187,9 +220,15 @@
             </td>
             <td>
                 <select name="anio" id="anio" style="width: 100px;">
-                    {foreach from=$date item="p"}
-                        <option value="{$p}" >{$p}</option>
-                    {/foreach}
+                    <?php  $_smarty_tpl->tpl_vars["p"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->getVariable('date')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if (count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars["p"]->key => $_smarty_tpl->tpl_vars["p"]->value){
+?>
+                        <option value="<?php echo $_smarty_tpl->getVariable('p')->value;?>
+" ><?php echo $_smarty_tpl->getVariable('p')->value;?>
+</option>
+                    <?php }} ?>
                 </select>
             </td>
         </tr>
@@ -236,9 +275,15 @@
             <td>Periodo</td>
             <td>
                 <select name="anio_per" id="anio_per" style="width: 100px;">
-                    {foreach from=$date item="p"}
-                        <option value="{$p}" >{$p}</option>
-                    {/foreach}
+                    <?php  $_smarty_tpl->tpl_vars["p"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->getVariable('date')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if (count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars["p"]->key => $_smarty_tpl->tpl_vars["p"]->value){
+?>
+                        <option value="<?php echo $_smarty_tpl->getVariable('p')->value;?>
+" ><?php echo $_smarty_tpl->getVariable('p')->value;?>
+</option>
+                    <?php }} ?>
                 </select>
                 <select name="mes_per" id="mes_per" style="width: 100px;">
                     <option value="1">ENERO</option>
@@ -269,7 +314,8 @@
                             <tr>
                                 <th width="45%">Fecha Alerta</th>
                                 <th width="45%">Fecha Final</th>
-                                <th width="5%"><a href="#" title="Agregar Fechas" class="addFechasAdd"><img src="{$HOST}images/add.png"/></a></th>
+                                <th width="5%"><a href="#" title="Agregar Fechas" class="addFechasAdd"><img src="<?php echo $_smarty_tpl->getVariable('HOST')->value;?>
+images/add.png"/></a></th>
                             </tr>
                         </thead>
                     </table>

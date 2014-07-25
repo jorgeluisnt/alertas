@@ -148,6 +148,7 @@ class cFuncionario extends ControllerBase {
         $grilla->addColumnas("estado", "Direccion");
         $grilla->addColumnas("dni", "Dni");
         $grilla->addColumnas("email", "Email");
+        $grilla->addColumnas("email_2", "Email 2");
         $grilla->addColumnas("cargo", "Cargo");
         $grilla->addColumnas("oficina", "Oficina");
 
@@ -212,6 +213,7 @@ class cFuncionario extends ControllerBase {
         $db->addColumna("direccion");
         $db->addColumna("dni");
         $db->addColumna("email");
+        $db->addColumna("email_2");
         $db->addColumna("Cargo->descripcion");
         $db->addColumna("Oficina->nombre");
         $db->addColumna("estado");

@@ -105,6 +105,10 @@ $(document).ready(function() {
                 required: true,
                 email: true
             },
+            email_2: {
+                required: true,
+                email: true
+            },
             id_oficina: {
                 required: true
             },
@@ -137,6 +141,10 @@ $(document).ready(function() {
                 maxlength: "Ingrese 8 caracteres"
             },
             email: {
+                email: "Ingrese un email correcto",
+                required: "Ingrese un email",
+            },
+            email_2: {
                 email: "Ingrese un email correcto",
                 required: "Ingrese un email",
             }
@@ -173,6 +181,7 @@ $(document).ready(function() {
                         direccion: $("#direccion").val().toUpperCase(),
                         dni: $("#dni").val().toUpperCase(),
                         email: $("#email").val().toLowerCase(),
+                        email_2: $("#email_2").val().toLowerCase(),
                         usuario: usuario,
                         clave: clave,
                         id_oficina: $("#id_oficina").val(),
@@ -273,6 +282,7 @@ $(document).ready(function() {
                 $("#direccion").val(response.response.direccion);
                 $("#dni").val(response.response.dni);
                 $("#email").val(response.response.email);
+                $("#email_2").val(response.response.email_2);
                 $("#usuario").val(response.response.usuario);
                 $("#clave").val(response.response.clave);
                 $("#id_oficina").val(response.response.id_oficina);
