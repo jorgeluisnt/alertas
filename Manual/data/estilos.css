@@ -1,0 +1,151 @@
+body{
+  font-family: helvetica;
+  padding:5px;
+}
+
+#total{
+border: 1px solid gray;
+}
+
+h2{
+  padding: 10px 0px;
+  border: 1px solid gray;
+}
+
+h3{
+    margin-left:1.1%;
+    width: 94%;
+    padding: 8px;
+    border: 1px solid gray;
+    background: #f0f0f0;
+}
+
+h1{
+  margin-left: 2%
+}
+
+.lista_tablas{
+  border: 1px solid gray
+}
+
+.lista_tablas li {
+   border: 1px solid gray
+}
+
+.link{
+  text-decoration: none !important;
+  color:#333333;
+  text-transform: uppercase;
+}
+
+.lista_tablas li:hover{
+  background-color: #e6e6e6
+}
+
+.table {
+        border:1px solid gray;
+        margin-bottom:3em;
+        margin-left:2em;
+        margin-right:2em;
+        padding:5px;
+      }
+
+table{
+  border:1px solid gray;
+}
+
+table td{
+  padding: 5px;
+  border: 1px solid gray
+}
+
+      .tableNameHeading{
+        width: 92%;
+        background: #f0f0f0;
+        margin-left:4%;
+        text-align: left;
+        border:1px solid gray;
+        padding: 2px 0px;
+      }
+
+      .tableNameHeading h1 {
+          display: inline;
+          font-size:12px;
+          font-weight:bold;
+          text-transform: uppercase;
+      }
+        
+      .tableNameHeading h2 {
+        display: none;
+        font-size:115%;
+        font-weight:normal;
+      }
+      
+      .tableComment { 
+        background-color:#e4efff; margin-bottom:20px;
+      }
+      
+      .tableDefinition { 
+        padding:2px;
+        border-collapse:collapse;
+      }
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-top:1px solid #C0C0C0;
+      }
+
+      .link_fk{
+        text-decoration: none;
+        color: blue;
+      }
+
+      .tdLogicalColName {
+        width:20em;
+      }
+      
+      .tdPhysicalColName {
+        width:20em;
+      }
+      
+      .tdDataType {
+        width:10em;
+      }
+
+      .tdPkFlag {
+        width:4em;
+      }
+
+      .tdNullFlag {
+        width:9em;
+      }
+
+      .tdTableHeading {
+        padding:7px;
+        font-weight: bold;
+        vertical-align:top;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-weight: bold;
+      }
+
+      .references {
+      }
+
+      .references ul li{
+        list-style: none
+      }
+
+      .references ul li a{
+        text-decoration: none;
+        color: #000;
+        text-shadow:1px 0px 1px green;
+      }
+      .comment {
+        color:#666666;
+        margin-left:3em;
+        padding:0.25em;
+      }

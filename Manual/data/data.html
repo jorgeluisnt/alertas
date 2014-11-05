@@ -1,0 +1,790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <title>Diccionario de datos</title>
+  </head>
+  <body>
+    <div id="total">
+    <center>
+    <h2>DICCIONARIO DE DATOS</h2>
+    </center>
+    <h3>Lista de Tablas</h3>
+    <ul class='lista_tablas'>
+    <li>
+    <a class='link' href="#alertas">Alertas</a>
+    </li>
+    <li>
+    <a class='link' href="#cargo">Cargo</a>
+    </li>
+    <li>
+    <a class='link' href="#cargos_asignados">Cargos Asignados</a>
+    </li>
+    <li>
+    <a class='link' href="#detalle_modulos">Detalle Modulos</a>
+    </li>
+    <li>
+    <a class='link' href="#detalle_periodo">Detalle Periodo</a>
+    </li>
+    <li>
+    <a class='link' href="#detalle_plantilla">Detalle Plantilla</a>
+    </li>
+    <li>
+    <a class='link' href="#funcionario">Funcionario</a>
+    </li>
+    <li>
+    <a class='link' href="#mensajes_enviados">Mensajes Enviados</a>
+    </li>
+    <li>
+    <a class='link' href="#modulos">Modulos</a>
+    </li>
+    <li>
+    <a class='link' href="#municipalidad">Municipalidad</a>
+    </li>
+    <li>
+    <a class='link' href="#oficina">Oficina</a>
+    </li>
+    <li>
+    <a class='link' href="#perfil">Perfil</a>
+    </li>
+    <li>
+    <a class='link' href="#periodo_programacion">Periodo Programacion</a>
+    </li>
+    <li>
+    <a class='link' href="#plantilla_mensajes">Plantilla Mensajes</a>
+    </li>
+    <li>
+    <a class='link' href="#programacion">Programacion</a>
+    </li>
+    <li>
+    <a class='link' href="#tipo_oficina">Tipo Oficina</a>
+    </li>
+    </ul>
+    <div class="tableNameHeading">
+    <h1>alertas<a name="alertas"></a>
+    </h1>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName"></td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_alertas (PK)</td><td class="tdTableDefinition">id_alertas</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">LONGVARCHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_inicio</td><td class="tdTableDefinition">fecha_inicio</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_fin</td><td class="tdTableDefinition">fecha_fin</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">num_envios</td><td class="tdTableDefinition">num_envios</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado_alerta</td><td class="tdTableDefinition">estado_alerta</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr>
+    <td colspan="4">
+    <div class="comment">PENDIENTE,PUBLICADO,VENCIDO</div>
+    </td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">observaciones_fin</td><td class="tdTableDefinition">observaciones_fin</td><td class="tdTableDefinition">LONGVARCHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_programacion
+                    &nbsp;(<a class='link_fk' href="#programacion">FK</a>)
+                  </td><td class="tdTableDefinition">id_programacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_funcionario
+                    &nbsp;(<a class='link_fk' href="#funcionario">FK</a>)
+                  </td><td class="tdTableDefinition">id_funcionario</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a class='link_fk' href="#funcionario">funcionario</a> through (id_funcionario)</li>
+    <li>
+    <a href="#programacion" class='link_fk'>programacion</a> through (id_programacion)</li>
+    </ul>
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a class='link_fk' href="#mensajes_enviados">mensajes_enviados</a> referencing (id_alertas)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>cargo<a name="cargo"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_cargo (PK)</td><td class="tdTableDefinition">id_cargo</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_oficina
+                    &nbsp;(<a class='link_fk' href="#oficina">FK</a>)
+                  </td><td class="tdTableDefinition">id_oficina</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_perfil
+                    &nbsp;(<a class='link_fk' href="#perfil">FK</a>)
+                  </td><td class="tdTableDefinition">id_perfil</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#oficina" class='link_fk'>oficina</a> through (id_oficina)</li>
+    <li>
+    <a href="#perfil" class='link_fk'>perfil</a> through (id_perfil)</li>
+    </ul>
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#funcionario" class='link_fk'>funcionario</a> referencing (id_cargo)</li>
+    <li>
+    <a href="#cargos_asignados" class='link_fk'>cargos_asignados</a> referencing (id_cargo)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>cargos_asignados<a name="cargos_asignados"></a>
+    </h1>
+    <h2></h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_cargos_asignados (PK)</td><td class="tdTableDefinition">id_cargos_asignados</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_programacion
+                    &nbsp;(<a class='link_fk' href="#programacion">FK</a>)
+                  </td><td class="tdTableDefinition">id_programacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_cargo
+                    &nbsp;(<a class='link_fk' href="#cargo">FK</a>)
+                  </td><td class="tdTableDefinition">id_cargo</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#cargo" class='link_fk'>cargo</a> through (id_cargo)</li>
+    <li>
+    <a href="#programacion" class='link_fk'>programacion</a> through (id_programacion)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>detalle_modulos<a name="detalle_modulos"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_detalle_modulos (PK)</td><td class="tdTableDefinition">id_detalle_modulos</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_modulos
+                    &nbsp;(<a class='link_fk' href="#modulos">FK</a>)
+                  </td><td class="tdTableDefinition">id_modulos</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_perfil
+                    &nbsp;(<a class='link_fk' href="#perfil">FK</a>)
+                  </td><td class="tdTableDefinition">id_perfil</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#modulos" class='link_fk'>modulos</a> through (id_modulos)</li>
+    <li>
+    <a href="#perfil" class='link_fk'>perfil</a> through (id_perfil)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>detalle_periodo<a name="detalle_periodo"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_detalle_periodo (PK)</td><td class="tdTableDefinition">id_detalle_periodo</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_mensaje</td><td class="tdTableDefinition">fecha_mensaje</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_final</td><td class="tdTableDefinition">fecha_final</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_periodo_programacion
+                    &nbsp;(<a class='link_fk' href="#periodo_programacion">FK</a>)
+                  </td><td class="tdTableDefinition">id_periodo_programacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#periodo_programacion" class='link_fk'>periodo_programacion</a> through (id_periodo_programacion)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>detalle_plantilla<a name="detalle_plantilla"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_detalle_plantilla (PK)</td><td class="tdTableDefinition">id_detalle_plantilla</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">numero</td><td class="tdTableDefinition">numero</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">mensaje</td><td class="tdTableDefinition">mensaje</td><td class="tdTableDefinition">LONGVARCHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_plantilla_mensajes
+                    &nbsp;(<a class='link_fk' href="#plantilla_mensajes">FK</a>)
+                  </td><td class="tdTableDefinition">id_plantilla_mensajes</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#plantilla_mensajes" class='link_fk'>plantilla_mensajes</a> through (id_plantilla_mensajes)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>funcionario<a name="funcionario"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_funcionario (PK)</td><td class="tdTableDefinition">id_funcionario</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">nombres</td><td class="tdTableDefinition">nombres</td><td class="tdTableDefinition">VARCHAR(150)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">apellidos</td><td class="tdTableDefinition">apellidos</td><td class="tdTableDefinition">VARCHAR(150)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">direccion</td><td class="tdTableDefinition">direccion</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">dni</td><td class="tdTableDefinition">dni</td><td class="tdTableDefinition">VARCHAR(8)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">email</td><td class="tdTableDefinition">email</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">usuario</td><td class="tdTableDefinition">usuario</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">clave</td><td class="tdTableDefinition">clave</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_oficina
+                    &nbsp;(<a class='link_fk' href="#oficina">FK</a>)
+                  </td><td class="tdTableDefinition">id_oficina</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_cargo
+                    &nbsp;(<a class='link_fk' href="#cargo">FK</a>)
+                  </td><td class="tdTableDefinition">id_cargo</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_funcionario_jefe</td><td class="tdTableDefinition">id_funcionario_jefe</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#cargo" class='link_fk'>cargo</a> through (id_cargo)</li>
+    <li>
+    <a href="#oficina" class='link_fk'>oficina</a> through (id_oficina)</li>
+    </ul>
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#alertas" class='link_fk'>alertas</a> referencing (id_funcionario)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>mensajes_enviados<a name="mensajes_enviados"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_mensajes_enviados (PK)</td><td class="tdTableDefinition">id_mensajes_enviados</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_envio</td><td class="tdTableDefinition">fecha_envio</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">destinatario</td><td class="tdTableDefinition">destinatario</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_funcionario</td><td class="tdTableDefinition">id_funcionario</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado_mensaje</td><td class="tdTableDefinition">estado_mensaje</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">mensaje</td><td class="tdTableDefinition">mensaje</td><td class="tdTableDefinition">LONGVARCHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_alertas
+                    &nbsp;(<a class='link_fk' href="#alertas">FK</a>)
+                  </td><td class="tdTableDefinition">id_alertas</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#alertas" class='link_fk'>alertas</a> through (id_alertas)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>modulos<a name="modulos"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_modulos (PK)</td><td class="tdTableDefinition">id_modulos</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">url</td><td class="tdTableDefinition">url</td><td class="tdTableDefinition">VARCHAR(150)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_padre</td><td class="tdTableDefinition">id_padre</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">orden</td><td class="tdTableDefinition">orden</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#detalle_modulos" class='link_fk'>detalle_modulos</a> referencing (id_modulos)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>municipalidad<a name="municipalidad"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_municipalidad (PK)</td><td class="tdTableDefinition">id_municipalidad</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">razon_social</td><td class="tdTableDefinition">razon_social</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">direccion</td><td class="tdTableDefinition">direccion</td><td class="tdTableDefinition">VARCHAR(250)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">ruc</td><td class="tdTableDefinition">ruc</td><td class="tdTableDefinition">VARCHAR(11)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">telefonos</td><td class="tdTableDefinition">telefonos</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#oficina" class='link_fk'>oficina</a> referencing (id_municipalidad)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>oficina<a name="oficina"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_oficina (PK)</td><td class="tdTableDefinition">id_oficina</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">nombre</td><td class="tdTableDefinition">nombre</td><td class="tdTableDefinition">VARCHAR(1000)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">telefono</td><td class="tdTableDefinition">telefono</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">padre</td><td class="tdTableDefinition">padre</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">abreviatura</td><td class="tdTableDefinition">abreviatura</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">tipo</td><td class="tdTableDefinition">tipo</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr>
+    <td colspan="4">
+    <div class="comment">O : OBRA<br>A : Area</div>
+    </td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_municipalidad
+                    &nbsp;(<a class='link_fk' href="#municipalidad">FK</a>)
+                  </td><td class="tdTableDefinition">id_municipalidad</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_tipo_oficina
+                    &nbsp;(<a class='link_fk' href="#tipo_oficina">FK</a>)
+                  </td><td class="tdTableDefinition">id_tipo_oficina</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#tipo_oficina" class='link_fk'>tipo_oficina</a> through (id_tipo_oficina)</li>
+    <li>
+    <a href="#municipalidad" class='link_fk'>municipalidad</a> through (id_municipalidad)</li>
+    </ul>
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#cargo" class='link_fk'>cargo</a> referencing (id_oficina)</li>
+    <li>
+    <a href="#funcionario" class='link_fk'>funcionario</a> referencing (id_oficina)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>perfil<a name="perfil"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_perfil (PK)</td><td class="tdTableDefinition">id_perfil</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#cargo" class='link_fk'>cargo</a> referencing (id_perfil)</li>
+    <li>
+    <a href="#detalle_modulos" class='link_fk'>detalle_modulos</a> referencing (id_perfil)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>periodo_programacion<a name="periodo_programacion"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_periodo_programacion (PK)</td><td class="tdTableDefinition">id_periodo_programacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">mes</td><td class="tdTableDefinition">mes</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">anio</td><td class="tdTableDefinition">anio</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_programacion
+                    &nbsp;(<a class='link_fk' href="#programacion">FK</a>)
+                  </td><td class="tdTableDefinition">id_programacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#programacion" class='link_fk'>programacion</a> through (id_programacion)</li>
+    </ul>
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#detalle_periodo" class='link_fk'>detalle_periodo</a> referencing (id_periodo_programacion)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>plantilla_mensajes<a name="plantilla_mensajes"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_plantilla_mensajes (PK)</td><td class="tdTableDefinition">id_plantilla_mensajes</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">VARCHAR(250)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#programacion" class='link_fk'>programacion</a> referencing (id_plantilla_mensajes)</li>
+    <li>
+    <a href="#detalle_plantilla" class='link_fk'>detalle_plantilla</a> referencing (id_plantilla_mensajes)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>programacion<a name="programacion"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_programacion (PK)</td><td class="tdTableDefinition">id_programacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">LONGVARCHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_registro</td><td class="tdTableDefinition">fecha_registro</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">fecha_inicia_alerta</td><td class="tdTableDefinition">fecha_inicia_alerta</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">num_dias_entre_mensaje</td><td class="tdTableDefinition">num_dias_entre_mensaje</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">num_max_mensajes</td><td class="tdTableDefinition">num_max_mensajes</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr>
+    <td colspan="4">
+    <div class="comment">0 -&gt; indeterminado</div>
+    </td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">tipo_periodo</td><td class="tdTableDefinition">tipo_periodo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr>
+    <td colspan="4">
+    <div class="comment">POR DIA,POR MES</div>
+    </td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">num_unidades_periodo</td><td class="tdTableDefinition">num_unidades_periodo</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_plantilla_mensajes
+                    &nbsp;(<a class='link_fk' href="#plantilla_mensajes">FK</a>)
+                  </td><td class="tdTableDefinition">id_plantilla_mensajes</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">puntaje</td><td class="tdTableDefinition">puntaje</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">References</p>
+    <ul>
+    <li>
+    <a href="#plantilla_mensajes" class='link_fk'>plantilla_mensajes</a> through (id_plantilla_mensajes)</li>
+    </ul>
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#alertas" class='link_fk'>alertas</a> referencing (id_programacion)</li>
+    <li>
+    <a href="#cargos_asignados" class='link_fk'>cargos_asignados</a> referencing (id_programacion)</li>
+    <li>
+    <a href="#periodo_programacion" class='link_fk'>periodo_programacion</a> referencing (id_programacion)</li>
+    </ul>
+    </div>
+    </div>
+    <div class="tableNameHeading">
+    <h1>tipo_oficina<a name="tipo_oficina"></a>
+    </h1>
+    <h2>
+          </h2>
+    </div>
+    <div class="table">
+    <table class="tableDefinition" width="100%">
+    <tr>
+    <td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">id_tipo_oficina (PK)</td><td class="tdTableDefinition">id_tipo_oficina</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">descripcion</td><td class="tdTableDefinition">VARCHAR(30)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    <tr>
+    <td colspan="4">
+    <div class="comment">AV,JR,PASAJE,</div>
+    </td>
+    </tr>
+    <tr valign="top">
+    <td class="tdTableDefinition">estado</td><td class="tdTableDefinition">estado</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+    </tr>
+    </table>
+    <div class="references">
+    <p class="subTitle">Referenced By</p>
+    <ul>
+    <li>
+    <a href="#oficina" class='link_fk'>oficina</a> referencing (id_tipo_oficina)</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

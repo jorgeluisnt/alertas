@@ -1,6 +1,6 @@
-<?php /* Smarty version 3.0rc1, created on 2014-07-04 12:17:48
+<?php /* Smarty version 3.0rc1, created on 2014-08-07 16:25:03
          compiled from "./templates/cargo/datos.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:55252568953b6e1bc3b5721-25951766%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:9440147353e3eeaf557ec1-28797022%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -10,7 +10,7 @@ $_smarty_tpl->decodeProperties(array (
       1 => 1403824734,
     ),
   ),
-  'nocache_hash' => '55252568953b6e1bc3b5721-25951766',
+  'nocache_hash' => '9440147353e3eeaf557ec1-28797022',
   'function' => 
   array (
   ),

@@ -34,6 +34,10 @@ class cIndex extends ControllerBase{
 
     public function rights(){
         
+        //// Permiso para programacion
+        if ($this->actionName == 'programacionAction')
+            return true;
+        
         //// Procesa el Login
         if ($this->actionName == 'loginAction')
             return true;

@@ -158,6 +158,11 @@ class cCargo extends ControllerBase{
 
         $oficina = Oficina::getOficinasDependencia(0, 0);
         
+        include_once 'models/perfil.php';
+        $perfil = new Perfil();
+        $perfil = $perfil->getAll()->WhereAnd('estado=', 'A');
+
+        $smarty->assign('perfil',$perfil);        
         $smarty->assign('oficina',$oficina);
         $smarty->display('cargo/datos.tpl');
     }

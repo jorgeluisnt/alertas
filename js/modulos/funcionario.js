@@ -106,7 +106,7 @@ $(document).ready(function() {
                 email: true
             },
             email_2: {
-                required: true,
+                required: false,
                 email: true
             },
             id_oficina: {
